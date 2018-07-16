@@ -19,8 +19,8 @@ import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.executor.BatchResult;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 
-import java.io.Closeable;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * @author Clinton Begin
  */
-public interface MySqlSession extends Closeable {
+public interface MySqlSession extends SqlSession {
 
   /**
    * Retrieve a single row mapped from the statement key
