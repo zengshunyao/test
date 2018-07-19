@@ -1,14 +1,5 @@
 package javaBase.regexp;
 
-import com.sun.deploy.util.StringUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * *******************************************************************
  * &lt;p&gt;文件名：${file_name} &lt;/p&gt;
@@ -21,7 +12,7 @@ import java.util.regex.Pattern;
  * @department：政务事业部 Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  * All Rights Reserved.
  */
-public class RegexpTest {
+public class RegexpTest {/*
     public static void main(String[] args) {
 
         //被替换关键字的的数据源
@@ -86,7 +77,7 @@ public class RegexpTest {
 
     /**
      * 检索出pos机备注信息
-     */
+     *//*
     public static List<Map<String, String>> test(final String resultStr) {
         return new ArrayList<Map<String, String>>(0x2 << 4) {
             {
@@ -105,5 +96,5 @@ public class RegexpTest {
                 }
             }
         };
-    }
+    }*/
 }

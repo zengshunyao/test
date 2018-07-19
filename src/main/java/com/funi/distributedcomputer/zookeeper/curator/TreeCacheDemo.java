@@ -14,8 +14,11 @@ import java.util.List;
  * 风骚的Michael 老师
  */
 public class TreeCacheDemo {
-    private final static String CONNECTSTRING = "192.168.11.129:2181,192.168.11.134:2181," +
-            "192.168.11.135:2181,192.168.11.136:2181";
+    private static final String CONNECTSTRING =
+            "192.168.137.101:2181"
+                    + ",192.168.137.102:2181"
+                    + ",192.168.137.103:2181"
+                    + ",192.168.137.104:2181,";
 
     private static final String MASTER_PATH = "/curator_master_path1";
 

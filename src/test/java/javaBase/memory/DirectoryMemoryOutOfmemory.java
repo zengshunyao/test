@@ -1,9 +1,5 @@
 package javaBase.memory;
 
-import sun.misc.Unsafe;
-
-import java.lang.reflect.Field;
-
 /**
  * *******************************************************************
  * &lt;p&gt;文件名：${file_name} &lt;/p&gt;
@@ -17,7 +13,7 @@ import java.lang.reflect.Field;
  * @department：政务事业部 Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  * All Rights Reserved.
  */
-public class DirectoryMemoryOutOfmemory {
+public class DirectoryMemoryOutOfmemory {/*
 
     private static final int ONE_MB = 1024 * 1024;
     private static int count = 1;
@@ -25,7 +21,7 @@ public class DirectoryMemoryOutOfmemory {
     /**
      * @param args
      * @Author YHJ create at 2011-11-12 下午09:05:54
-     */
+     *//*
     public static void main(String[] args) {
         try {
             Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
@@ -44,5 +40,5 @@ public class DirectoryMemoryOutOfmemory {
         }
 
     }
-
+*/
 }

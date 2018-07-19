@@ -1,10 +1,5 @@
 package category.thread.object_structure_$_size_calculation;
 
-import sun.misc.Contended;
-import sun.misc.Unsafe;
-
-import java.lang.reflect.Field;
-
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;
  * &lt;p&gt;文件描述：${DESCRIPTION}(描述该文件做什么)
@@ -16,7 +11,7 @@ import java.lang.reflect.Field;
  * Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  *                    All Rights Reserved.
  */
-public class TypeSequence {
+public class TypeSequence {/*
     @Contended
     private boolean contended_boolean;
 
@@ -70,5 +65,5 @@ public class TypeSequence {
         System.out.println("contended_short:short\t" + UNSAFE.objectFieldOffset(TypeSequence.class.getDeclaredField("contended_short")));
         System.out.println("contended_int:int\t" + UNSAFE.objectFieldOffset(TypeSequence.class.getDeclaredField("contended_int")));
         System.out.println("contended_double:double\t" + UNSAFE.objectFieldOffset(TypeSequence.class.getDeclaredField("contended_double")));
-    }
+    }*/
 }

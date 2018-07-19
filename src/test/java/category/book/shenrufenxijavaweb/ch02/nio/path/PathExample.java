@@ -21,7 +21,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  */
 public class PathExample {
     public static void main(String[] args) throws IOException {
-        sun.nio.cs.ext.EUC_CN c;
+//        sun.nio.cs.ext.EUC_CN c;
         ClassLoader classLoader;
         System.out.println(PathExample.class.getClassLoader().getResource("").toString());
 //        BootstrapClassLoader s;

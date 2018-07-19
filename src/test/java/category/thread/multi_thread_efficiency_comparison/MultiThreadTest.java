@@ -1,11 +1,5 @@
 package category.thread.multi_thread_efficiency_comparison;
 
-import sun.misc.Unsafe;
-
-import java.lang.reflect.Field;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.LongAdder;
-
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;
  * &lt;p&gt;文件描述：${DESCRIPTION}(线程安全的+1操作实现种类)
@@ -19,7 +13,7 @@ import java.util.concurrent.atomic.LongAdder;
  */
 
 public class MultiThreadTest extends Thread {
-
+/*
     //整体表现最好,短时间的低并发下比AtomicInteger性能差一点，高并发下性能最高；
     private static LongAdder longAdder = new LongAdder();
 
@@ -71,6 +65,7 @@ public class MultiThreadTest extends Thread {
     public void run() {
         int i = 1;
         int count = 10000 /** 1000*/;
+        /*
         while (i++ <= count) {
             //测试AtomicInteger
 //            atomInteger.incrementAndGet();
@@ -107,5 +102,5 @@ public class MultiThreadTest extends Thread {
         System.out.println("LongAdder:" + longAdder);//209
         System.out.println("cas:" + cas);//207
     }
-
+*/
 }

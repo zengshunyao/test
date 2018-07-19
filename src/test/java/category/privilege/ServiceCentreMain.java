@@ -1,15 +1,5 @@
 package category.privilege;
 
-import sun.nio.cs.StreamEncoder;
-
-import java.io.FileDescriptor;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.charset.Charset;
-
 /**
  * *******************************************************************
  * &lt;p&gt;文件名：${file_name} &lt;/p&gt;
@@ -22,7 +12,7 @@ import java.nio.charset.Charset;
  * @department：政务事业部 Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  * All Rights Reserved.
  */
-public class ServiceCentreMain {
+public class ServiceCentreMain {/*
     public void loadService() {
         URL[] urls;
         try {
@@ -40,7 +30,7 @@ public class ServiceCentreMain {
 
     /**
      * @param args
-     */
+     *//*
     public static void main(String[] args) {
         //ServiceCentreMain s = new ServiceCentreMain();
         //s.loadService();
@@ -55,5 +45,5 @@ public class ServiceCentreMain {
                 super.close();
             }
         };
-    }
+    }*/
 }
