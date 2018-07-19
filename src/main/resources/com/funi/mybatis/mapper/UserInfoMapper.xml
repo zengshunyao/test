@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funi.mybatis.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.funi.mybatis.pojo.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="first_name" jdbcType="VARCHAR" property="firstName" />
+    <result column="last_name" jdbcType="VARCHAR" property="lastName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="copy_id" jdbcType="INTEGER" property="copyId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.funi.mybatis.pojo.UserInfo">
+    insert into userinfo (id, first_name, last_name, 
+      sex, score, copy_id)
+    values (#{id,jdbcType=INTEGER}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{copyId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.funi.mybatis.pojo.UserInfo">
+    update userinfo
+    set first_name = #{firstName,jdbcType=VARCHAR},
+      last_name = #{lastName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      copy_id = #{copyId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, first_name, last_name, sex, score, copy_id
+    from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, first_name, last_name, sex, score, copy_id
+    from userinfo
+  </select>
+</mapper>
