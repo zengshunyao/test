@@ -32,18 +32,18 @@
     <!-- 指定maven plugin仓库 -->
     <pluginRepositories>
         <!-- 公司的maven plugin仓库 -->
-        <pluginRepository>
-            <id>funiPluginRepository</id>
-            <name>local private nexus</name>
-            <!--<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>-->
-            <url>http://172.29.251.100/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
+        <!--<pluginRepository>-->
+            <!--<id>funiPluginRepository</id>-->
+            <!--<name>local private nexus</name>-->
+            <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
+            <!--<url>http://172.29.251.100/nexus/content/groups/public/</url>-->
+            <!--<releases>-->
+                <!--<enabled>true</enabled>-->
+            <!--</releases>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</pluginRepository>-->
     </pluginRepositories>
     <profiles>
         <!--环境-->
