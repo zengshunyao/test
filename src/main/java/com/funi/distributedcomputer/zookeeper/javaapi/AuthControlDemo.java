@@ -32,22 +32,25 @@ public class AuthControlDemo implements Watcher {
         zookeeper = new ZooKeeper(CONNECTSTRING, 5000, new AuthControlDemo());
         countDownLatch.await();
 
-        ACL acl = new ACL(ZooDefs.Perms.CREATE, new Id("digest", "root:root"));
-        ACL acl2 = new ACL(ZooDefs.Perms.CREATE, new Id("ip", "192.168.1.1"));
+//        ACL acl = new ACL(ZooDefs.Perms.CREATE, new Id("digest", "root:root"));
+//        ACL acl2 = new ACL(ZooDefs.Perms.CREATE, new Id("ip", "192.168.137.1"));
 
-        List<ACL> acls = new ArrayList<>();
-        acls.add(acl);
-        acls.add(acl2);
+//        List<ACL> acls = new ArrayList<>();
+//        acls.add(acl);
+//        acls.add(acl2);
         //zookeeper.create("/auth1", "123".getBytes(), acls, CreateMode.PERSISTENT);
 
+//        zookeeper.addAuthInfo("digest", "root:root".getBytes());
         zookeeper.addAuthInfo("digest", "root:root".getBytes());
-        zookeeper.create("/auth1", "123".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.PERSISTENT);
-        zookeeper.create("/auth1/auth1-1", "123".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.EPHEMERAL);
-
+//        zookeeper.create("/auth1", "123".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.PERSISTENT);
+        zookeeper.create("/test", "test".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+//        zookeeper.create("/auth1/auth1-1", "123".getBytes(), ZooDefs.Ids.CREATOR_ALL_ACL, CreateMode.EPHEMERAL);
+//        zookeeper.create("test/test-1", "value".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
 
         ZooKeeper zooKeeper1 = new ZooKeeper(CONNECTSTRING, 5000, new AuthControlDemo());
         countDownLatch.await();
-        zooKeeper1.delete("/auth1", -1);
+//        zooKeeper1.delete("/auth1", -1);
+        zooKeeper1.delete("/test", -1);
 
         // acl (create /delete /admin /read/write)
         //权限模式： ip/Digest（username:password）/world/super
@@ -60,6 +63,7 @@ public class AuthControlDemo implements Watcher {
         if (watchedEvent.getState() == Event.KeeperState.SyncConnected) {
             if (Event.EventType.None == watchedEvent.getType() && null == watchedEvent.getPath()) {
                 countDownLatch.countDown();
+                countDownLatch2.countDown();
                 System.out.println(watchedEvent.getState() + "-->" + watchedEvent.getType());
             }
         }

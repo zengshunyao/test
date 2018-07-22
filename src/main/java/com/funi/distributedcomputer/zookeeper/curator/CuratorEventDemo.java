@@ -23,24 +23,32 @@ public class CuratorEventDemo {
      */
 
     public static void main(String[] args) throws Exception {
-        CuratorFramework curatorFramework=CuratorClientUtils.getInstance();
+        CuratorFramework curatorFramework = CuratorClientUtils.getInstance();
 
         /**
          * 节点变化NodeCache
          */
-       /* NodeCache cache=new NodeCache(curatorFramework,"/curator",false);
-        cache.start(true);
+//        NodeCache cache=new NodeCache(curatorFramework,"/curator",false);
+//        cache.start(true);
+//
+//        cache.getListenable().addListener(()-> System.out.println("节点数据发生变化,变化后的结果" +
+//                "："+new String(cache.getCurrentData().getData())));
+//
+//        curatorFramework.setData().forPath("/curator","菲菲".getBytes());
 
-        cache.getListenable().addListener(()-> System.out.println("节点数据发生变化,变化后的结果" +
-                "："+new String(cache.getCurrentData().getData())));
-
-        curatorFramework.setData().forPath("/curator","菲菲".getBytes());*/
-
+//        NodeCache cache = new NodeCache(curatorFramework, "/test", false);
+//        cache.start();
+//        cache.getListenable().addListener(() ->
+//                System.out.println("节点数据发生变化，变化后的结果为：" + new String(cache.getCurrentData().getData()))
+//        );
+//        //curatorFramework.create().forPath("/test","qazwsx1".getBytes());
+//        curatorFramework.setData().forPath("/test", "qazwsx".getBytes());
+//        System.in.read();
 
         /**
          * PatchChildrenCache
          */
-
+/*
         PathChildrenCache cache=new PathChildrenCache(curatorFramework,"/event",true);
         cache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
         // Normal / BUILD_INITIAL_CACHE /POST_INITIALIZED_EVENT
@@ -76,5 +84,68 @@ public class CuratorEventDemo {
 
         System.in.read();
 
+
+
+        /**
+        * PathChildrenCache
+        * */
+
+//        curatorFramework.create()
+//                .withMode(CreateMode.PERSISTENT).forPath("/event", "qazwsxc".getBytes());
+//        TimeUnit.SECONDS.sleep(1);
+//        System.out.println(1);
+
+        PathChildrenCache pathChildrenCache = new PathChildrenCache(curatorFramework, "/event", false);
+        //StartMode  NORMAL 、BUILD_INITIAL_CACHE、POST_INITIALIZED_EVENT
+        pathChildrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
+
+        pathChildrenCache.getListenable().addListener((curatorFramework1, pathChildrenCacheEvent) -> {
+            switch (pathChildrenCacheEvent.getType()) {
+                case CHILD_ADDED:
+                    System.out.println("创建子节点");
+                    break;
+                case CHILD_UPDATED:
+                    System.out.println("更新子节点");
+                    break;
+
+                case CHILD_REMOVED:
+                    System.out.println("删除子节点");
+                    break;
+
+                case CONNECTION_LOST:
+                    System.out.println("CONNECTION_LOST");
+                    break;
+
+                case INITIALIZED:
+                    System.out.println("INITIALIZED");
+                    break;
+
+                case CONNECTION_SUSPENDED:
+                    System.out.println("CONNECTION_SUSPENDED");
+                    break;
+                case CONNECTION_RECONNECTED:
+                    System.out.println("CONNECTION_RECONNECTED");
+                    break;
+
+            }
+        });
+
+        //创建节点
+        curatorFramework.create().creatingParentsIfNeeded()
+                .withMode(CreateMode.PERSISTENT).forPath("/event/event-1", "1123445".getBytes());
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(2);
+        //更新节点
+        curatorFramework.setData().forPath("/event/event-1", "1123445".getBytes());
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(3);
+        //删除节点
+        curatorFramework.delete().forPath("/event/event-1");
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println(4);
+
+
+
+        System.in.read();
     }
 }
