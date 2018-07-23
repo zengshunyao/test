@@ -26,6 +26,7 @@ public class TreeCacheDemo {
 
     public static void main(String[] args) throws Exception {
         System.out.println("创建" + CLIENT_QTY + "个客户端，");
+
         List<CuratorFramework> clients = Lists.newArrayList();
         List<ExampleClient> examples = Lists.newArrayList();
         try {
