@@ -13,15 +13,15 @@
 
     <!-- html Appender -->
     <!--<appender name="HTML-APPENDER" class="org.apache.log4j.RollingFileAppender">-->
-        <!--<param name="file" value="${tbss.root}/logs/app_log.html"/>-->
-        <!--<param name="append" value="false"/>-->
-        <!--<param name="encoding" value="UTF-8"/>-->
-        <!--<param name="maxFileSize" value="1048576"/>-->
-        <!--<param name="maxBackupIndex" value="3"/>-->
-        <!--<layout class="org.apache.log4j.HTMLLayout">-->
-            <!--<param name="locationInfo" value="true" />-->
-            <!--<param name="title" value="项目日志" />-->
-        <!--</layout>-->
+    <!--<param name="file" value="${tbss.root}/logs/app_log.html"/>-->
+    <!--<param name="append" value="false"/>-->
+    <!--<param name="encoding" value="UTF-8"/>-->
+    <!--<param name="maxFileSize" value="1048576"/>-->
+    <!--<param name="maxBackupIndex" value="3"/>-->
+    <!--<layout class="org.apache.log4j.HTMLLayout">-->
+    <!--<param name="locationInfo" value="true" />-->
+    <!--<param name="title" value="项目日志" />-->
+    <!--</layout>-->
     <!--</appender>-->
 
     <!-- Default Appender -->
@@ -107,42 +107,42 @@
 
     <!-- struts Appender -->
     <!--<appender name="STRUTS-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">-->
-        <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-struts.log"/>-->
-        <!--<param name="append" value="true"/>-->
-        <!--<param name="encoding" value="UTF-8"/>-->
-        <!--<layout class="org.apache.log4j.PatternLayout">-->
-            <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
-        <!--</layout>-->
+    <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-struts.log"/>-->
+    <!--<param name="append" value="true"/>-->
+    <!--<param name="encoding" value="UTF-8"/>-->
+    <!--<layout class="org.apache.log4j.PatternLayout">-->
+    <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
+    <!--</layout>-->
     <!--</appender>-->
 
     <!-- mybatis Appender -->
     <!--<appender name="MYBATIS-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">-->
-        <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-mybatis.log"/>-->
-        <!--<param name="append" value="true"/>-->
-        <!--<param name="encoding" value="UTF-8"/>-->
-        <!--<layout class="org.apache.log4j.PatternLayout">-->
-            <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
-        <!--</layout>-->
+    <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-mybatis.log"/>-->
+    <!--<param name="append" value="true"/>-->
+    <!--<param name="encoding" value="UTF-8"/>-->
+    <!--<layout class="org.apache.log4j.PatternLayout">-->
+    <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
+    <!--</layout>-->
     <!--</appender>-->
 
     <!-- cxf Appender -->
     <!--<appender name="CXF-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">-->
-        <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-cxf.log"/>-->
-        <!--<param name="append" value="true"/>-->
-        <!--<param name="encoding" value="UTF-8"/>-->
-        <!--<layout class="org.apache.log4j.PatternLayout">-->
-            <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
-        <!--</layout>-->
+    <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-cxf.log"/>-->
+    <!--<param name="append" value="true"/>-->
+    <!--<param name="encoding" value="UTF-8"/>-->
+    <!--<layout class="org.apache.log4j.PatternLayout">-->
+    <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
+    <!--</layout>-->
     <!--</appender>-->
 
     <!--xmemcached Appender-->
     <!--<appender name="XMEMCACHED-APPENDER" class="org.apache.log4j.DailyRollingFileAppender">-->
-        <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-xmemcached.log"/>-->
-        <!--<param name="append" value="true"/>-->
-        <!--<param name="encoding" value="UTF-8"/>-->
-        <!--<layout class="org.apache.log4j.PatternLayout">-->
-            <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
-        <!--</layout>-->
+    <!--<param name="file" value="${catalina.home}/logs/dexcoder/common-xmemcached.log"/>-->
+    <!--<param name="append" value="true"/>-->
+    <!--<param name="encoding" value="UTF-8"/>-->
+    <!--<layout class="org.apache.log4j.PatternLayout">-->
+    <!--<param name="ConversionPattern" value="[%r][%p][%t] %d{HH:mm:ss,SSS} method:%l %m%n"/>-->
+    <!--</layout>-->
     <!--</appender>-->
 
     <!--velocity Appender-->
@@ -170,29 +170,29 @@
 
     <!--struts logger-->
     <!--<logger name="com.opensymphony" additivity="true">-->
-        <!--<appender-ref ref="STRUTS-APPENDER"/>-->
+    <!--<appender-ref ref="STRUTS-APPENDER"/>-->
     <!--</logger>-->
     <!--<logger name="org.apache.struts2" additivity="true">-->
-        <!--<appender-ref ref="STRUTS-APPENDER"/>-->
+    <!--<appender-ref ref="STRUTS-APPENDER"/>-->
     <!--</logger>-->
 
     <!--mybatis logger-->
     <!--<logger name="java.sql" additivity="true">-->
-        <!--<level value="info"></level>-->
-        <!--<appender-ref ref="MYBATIS-APPENDER"/>-->
+    <!--<level value="info"></level>-->
+    <!--<appender-ref ref="MYBATIS-APPENDER"/>-->
     <!--</logger>-->
 
     <!--cxf logger-->
     <!--<logger name="org.apache.cxf" additivity="true">-->
-        <!--<appender-ref ref="CXF-APPENDER"/>-->
+    <!--<appender-ref ref="CXF-APPENDER"/>-->
     <!--</logger>-->
 
     <!--xmemcached logger-->
     <!--<logger name="net.rubyeye.xmemcached" additivity="true">-->
-        <!--<appender-ref ref="XMEMCACHED-APPENDER"/>-->
+    <!--<appender-ref ref="XMEMCACHED-APPENDER"/>-->
     <!--</logger>-->
     <!--<logger name="com.google.code" additivity="true">-->
-        <!--<appender-ref ref="XMEMCACHED-APPENDER"/>-->
+    <!--<appender-ref ref="XMEMCACHED-APPENDER"/>-->
     <!--</logger>-->
 
     <!--velocity logger-->
@@ -206,8 +206,10 @@
     <!-- root logger -->
     <root>
         <level value="info"/>
-        <appender-ref ref="DEFAULT-APPENDER"/>
-        <appender-ref ref="STDOUT-APPENDER"/>
+        <!--屏蔽-->
+        <!--<appender-ref ref="DEFAULT-APPENDER"/>-->
+        <!--<appender-ref ref="STDOUT-APPENDER"/>-->
+
         <!--<appender-ref ref="HTML-APPENDER"/>-->
     </root>
 

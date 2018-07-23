@@ -33,16 +33,16 @@
     <pluginRepositories>
         <!-- 公司的maven plugin仓库 -->
         <!--<pluginRepository>-->
-            <!--<id>funiPluginRepository</id>-->
-            <!--<name>local private nexus</name>-->
-            <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
-            <!--<url>http://172.29.251.100/nexus/content/groups/public/</url>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
+        <!--<id>funiPluginRepository</id>-->
+        <!--<name>local private nexus</name>-->
+        <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
+        <!--<url>http://172.29.251.100/nexus/content/groups/public/</url>-->
+        <!--<releases>-->
+        <!--<enabled>true</enabled>-->
+        <!--</releases>-->
+        <!--<snapshots>-->
+        <!--<enabled>false</enabled>-->
+        <!--</snapshots>-->
         <!--</pluginRepository>-->
     </pluginRepositories>
     <profiles>
@@ -297,6 +297,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jpa</artifactId>
             <version>${spring-jpa.versoin}</version>
+            <exclusions>
+                <exclusion>
+                    <!--commons-logging:commons-logging:1.1-->
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- 工具包 -->
         <!-- JSON start -->
@@ -344,6 +351,13 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>
+            <exclusions>
+                <exclusion>
+                    <!--org.slf4j:slf4j-api:1.6.6-->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
@@ -378,6 +392,13 @@
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>${commons-httpclient.version}</version>
+            <exclusions>
+                <exclusion>
+                    <!--commons-logging:commons-logging:1.0.3-->
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- commons-email -->
         <dependency>
@@ -386,20 +407,20 @@
             <version>${commons-email.version}</version>
         </dependency>
         <!-- commons-logging -->
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${commons-logging.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging-api</artifactId>
-            <version>${commons-logging-api.version}</version>
-        </dependency>
         <!--<dependency>-->
-            <!--<groupId>ch.qos.logback</groupId>-->
-            <!--<artifactId>logback-classic</artifactId>-->
-            <!--<version>${logback.version}</version>-->
+        <!--<groupId>commons-logging</groupId>-->
+        <!--<artifactId>commons-logging</artifactId>-->
+        <!--<version>${commons-logging.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>commons-logging</groupId>-->
+        <!--<artifactId>commons-logging-api</artifactId>-->
+        <!--<version>${commons-logging-api.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>ch.qos.logback</groupId>-->
+        <!--<artifactId>logback-classic</artifactId>-->
+        <!--<version>${logback.version}</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -440,6 +461,13 @@
             <groupId>org.codehaus.castor</groupId>
             <artifactId>castor-xml</artifactId>
             <version>${castor-xml.version}</version>
+            <exclusions>
+                <exclusion>
+                    <!--commons-logging:commons-logging:1.1.1-->
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- xtream -->
@@ -477,18 +505,25 @@
             <groupId>com.googlecode.xmemcached</groupId>
             <artifactId>xmemcached</artifactId>
             <version>2.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <!--org.slf4j:slf4j-api:1.7.5-->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>com.google.guava</groupId>-->
-            <!--<artifactId>guava</artifactId>-->
-            <!--<version>15.0</version>-->
-            <!--<scope>test</scope>-->
+        <!--<groupId>com.google.guava</groupId>-->
+        <!--<artifactId>guava</artifactId>-->
+        <!--<version>15.0</version>-->
+        <!--<scope>test</scope>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>com.google.guava</groupId>-->
-            <!--<artifactId>guava</artifactId>-->
-            <!--<version>15.0</version>-->
-            <!--<scope>test</scope>-->
+        <!--<groupId>com.google.guava</groupId>-->
+        <!--<artifactId>guava</artifactId>-->
+        <!--<version>15.0</version>-->
+        <!--<scope>test</scope>-->
         <!--</dependency>-->
         <!---->
         <!--<dependency>-->
@@ -502,6 +537,13 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5</version>
+            <exclusions>
+                <exclusion>
+                    <!--commons-logging:commons-logging:1.2-->
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -620,23 +662,54 @@
             <version>3.4.12</version>
             <!--<version>3.4.8</version>-->
             <!--<type>pom</type>-->
+            <exclusions>
+                <!--<exclusion>-->
+                    <!--org.slf4j:slf4j-api:1.7.25-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                    <!--<artifactId>slf4j-api</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--org.slf4j:slf4j-log4j12:1.7.25-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                    <!--<artifactId>slf4j-log4j12</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--log4j:log4j:1.2.17-->
+                    <!--<groupId>log4j</groupId>-->
+                    <!--<artifactId>log4j</artifactId>-->
+                <!--</exclusion>-->
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.101tec</groupId>
             <artifactId>zkclient</artifactId>
             <version>0.10</version>
+            <exclusions>
+                <exclusion>
+                    <!--org.slf4j:slf4j-api:1.6.1-->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-recipes</artifactId>
             <version>2.11.0</version>
+            <exclusions>
+                <exclusion>
+                    <!--org.slf4j:slf4j-api:1.7.6-->
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>log4j</groupId>-->
+        <!--<artifactId>log4j</artifactId>-->
+        <!--<version>1.2.17</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -787,17 +860,17 @@
             </plugin>
             <!--打包 jar-->
             <!--<plugin>-->
-                <!--<artifactId>maven-assembly-plugin</artifactId>-->
-                <!--<version>3.0.0</version>-->
-                <!--<configuration>-->
-                    <!--<archive>-->
-                        <!--<manifest>-->
-                            <!--<mainClass>-->
-                                <!--com.funi.jsoup.Download-->
-                            <!--</mainClass>-->
-                        <!--</manifest>-->
-                    <!--</archive>-->
-                <!--</configuration>-->
+            <!--<artifactId>maven-assembly-plugin</artifactId>-->
+            <!--<version>3.0.0</version>-->
+            <!--<configuration>-->
+            <!--<archive>-->
+            <!--<manifest>-->
+            <!--<mainClass>-->
+            <!--com.funi.jsoup.Download-->
+            <!--</mainClass>-->
+            <!--</manifest>-->
+            <!--</archive>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <!--mybatis generate-->
             <!--<plugin>-->

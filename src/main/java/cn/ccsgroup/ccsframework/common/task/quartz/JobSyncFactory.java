@@ -19,6 +19,7 @@ public class JobSyncFactory implements Job {
     /* 日志对象 */
     private static final Logger LOG = LoggerFactory.getLogger(JobSyncFactory.class);
 
+    @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
 
         LOG.info("JobSyncFactory execute");
