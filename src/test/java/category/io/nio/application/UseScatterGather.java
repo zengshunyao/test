@@ -1,4 +1,4 @@
-package category.nio;// $Id$
+package category.io.nio.application;// $Id$
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;

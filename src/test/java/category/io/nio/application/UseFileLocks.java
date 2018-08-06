@@ -1,4 +1,4 @@
-package category.nio;// $Id$
+package category.io.nio.application;// $Id$
 
 import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;

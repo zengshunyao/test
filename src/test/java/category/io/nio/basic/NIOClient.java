@@ -1,4 +1,4 @@
-package category.nio.knowledge;
+package category.io.nio.basic;
 
 /**
  * Created by Lenovo on 2015/6/14.

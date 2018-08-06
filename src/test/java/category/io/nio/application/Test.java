@@ -1,4 +1,4 @@
-package category.nio;
+package category.io.nio.application;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

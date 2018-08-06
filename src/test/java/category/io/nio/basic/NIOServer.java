@@ -1,4 +1,4 @@
-package category.nio.knowledge;
+package category.io.nio.basic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -69,6 +69,12 @@ public class NIOServer {
         }
     }
 
+    /**
+     * 处理
+     *
+     * @param key
+     * @throws IOException
+     */
     private void handleKey(SelectionKey key) throws IOException {
         if (key.isAcceptable()) {
             System.out.println("Accept.............");
