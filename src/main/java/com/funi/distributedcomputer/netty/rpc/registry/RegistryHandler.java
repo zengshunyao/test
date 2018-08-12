@@ -24,7 +24,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter{
 	//com.gupaoedu.rpc.provider
 	
 	public RegistryHandler(){
-		scanClass("com.gupaoedu.rpc.provider");
+		scanClass("com.funi.distributedcomputer.netty.rpc.provider");
 		doRegister();
 	}
 	
