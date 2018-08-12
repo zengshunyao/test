@@ -1,16 +1,15 @@
 package com.funi.distributedcomputer.netty.rpc.registry;
 
+import com.funi.distributedcomputer.netty.rpc.core.msg.InvokerMsg;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.funi.distributedcomputer.netty.rpc.core.msg.InvokerMsg;
-
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 
 //处理整个注册中心的业务逻辑
 public class RegistryHandler extends ChannelInboundHandlerAdapter{
@@ -18,10 +17,10 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter{
 	//在注册中心注册的服务需要有一个容器存放
 	public static ConcurrentHashMap<String, Object> registryMap = new ConcurrentHashMap<String, Object>();
 	
-	private List<String> classCache = new ArrayList<String>();
+	private List<String> classCache = new LinkedList<String>();
 	
 	//约定，只要写在provider包下面的所有类都认为是一个可以对外提供服务的实现类
-	//com.gupaoedu.rpc.provider
+	//com.funi.distributedcomputer.netty.rpc.provider
 	
 	public RegistryHandler(){
 		scanClass("com.funi.distributedcomputer.netty.rpc.provider");
