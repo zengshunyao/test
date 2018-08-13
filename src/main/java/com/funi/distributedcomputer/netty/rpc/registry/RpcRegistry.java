@@ -13,25 +13,21 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class RpcRegistry {
 
+    //端口
     private int port;
 
     public RpcRegistry(int port) {
         this.port = port;
     }
 
-
     public void start() {
-
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-
         try {
-
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
-
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
 
@@ -84,14 +80,9 @@ public class RpcRegistry {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }
-
-
     }
-
 
     public static void main(String[] args) {
         new RpcRegistry(8080).start();
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.funi.distributedcomputer.netty.rpc.core.msg;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class InvokerMsg implements Serializable {
 
@@ -41,5 +42,13 @@ public class InvokerMsg implements Serializable {
         this.values = values;
     }
 
-
+    @Override
+    public String toString() {
+        return "InvokerMsg{" +
+                "className='" + className + '\'' +
+                ", methodName='" + methodName + '\'' +
+                ", parames=" + (parames == null ? null : Arrays.asList(parames)) +
+                ", values=" + (values == null ? null : Arrays.asList(values)) +
+                '}';
+    }
 }
