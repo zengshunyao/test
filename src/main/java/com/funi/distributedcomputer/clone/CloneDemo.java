@@ -4,7 +4,12 @@ import java.io.IOException;
 
 public class CloneDemo {
 
-
+    /**
+     *
+     * @param args
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Student student = new Student();
         student.setAge(18);
