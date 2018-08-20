@@ -13,13 +13,12 @@ import java.util.List;
 @Mojo(name = "StatisticFile", defaultPhase = LifecyclePhase.COMPILE)
 public class StatisticFile extends AbstractMojo {
 
-
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         System.out.println("StatisticFile drive...");
 
         String path = "L:\\项目\\1\\src";
-        List<File> list = this.totalFiles(path);
+        List<File> list = StatisticFile.totalFiles(path);
         System.out.println("文件数量：" + list.size());
 
         //统计代码行数

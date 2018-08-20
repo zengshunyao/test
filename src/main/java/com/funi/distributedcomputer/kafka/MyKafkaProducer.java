@@ -9,17 +9,15 @@ import java.util.Properties;
 
 public class MyKafkaProducer {
 
-    private static final String KAFKA_BROKER_LIST = "47.52.33.73:9092";
-    private static final String TOPIC = "ONE";
 
     private final Producer<Integer, String> producer;
 
-    private final String topic = TOPIC;
+    private final String topic = MyKafkaProperties.TOPIC;
 
     public MyKafkaProducer() {
 
         Properties properties = new Properties();
-        properties.put("bootstrap.servers", KAFKA_BROKER_LIST);
+        properties.put("bootstrap.servers", MyKafkaProperties.KAFKA_BROKER_LIST);
         properties.put("key.serializer", IntegerSerializer.class.getName());
         properties.put("value.serializer", StringSerializer.class.getName());
         properties.put("client.id", StringSerializer.class.getName());
