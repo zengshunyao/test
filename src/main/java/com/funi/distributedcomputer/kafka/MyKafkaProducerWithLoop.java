@@ -7,14 +7,14 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import java.io.IOException;
 import java.util.Properties;
 
-public class MyKafkaProducer {
+public class MyKafkaProducerWithLoop implements Runnable {
 
 
     private final Producer<Integer, String> producer;
 
     private final String topic = MyKafkaProperties.TOPIC;
 
-    public MyKafkaProducer() {
+    public MyKafkaProducerWithLoop() {
 
         Properties properties = new Properties();
         properties.put("bootstrap.servers", MyKafkaProperties.KAFKA_BROKER_LIST);
@@ -34,14 +34,29 @@ public class MyKafkaProducer {
         });
     }
 
+    @Override
+    public void run() {
+        int messageNo = 0;
+        while (true) {
+            String messageStr = "message" + messageNo;
+            this.producer.send(new ProducerRecord<Integer, String>(this.topic, messageNo, messageStr), new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    System.out.println("message send to [" + recordMetadata.partition() + "],offset[" + recordMetadata.offset() + "]");
+                }
+            });
+            ++messageNo;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void main(String[] args) throws IOException {
-        MyKafkaProducer producer = new MyKafkaProducer();
-        producer.sendMsg();
-
-        //insert 数据库
-        //commit kafka
-        //放到同一个事务  同一个库
+        MyKafkaProducerWithLoop producer = new MyKafkaProducerWithLoop();
+        new Thread(producer).start();
 
         System.in.read();
     }

@@ -5,11 +5,10 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Properties;
 
 /**********************************************************************
@@ -23,11 +22,11 @@ import java.util.Properties;
  * Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  *                    All Rights Reserved.
  */
-public class MyConsumer extends ShutdownableThread {
+public class MyConsumer1 extends ShutdownableThread {
 
     private final KafkaConsumer<Integer, String> consumer;
 
-    public MyConsumer() {
+    public MyConsumer1() {
         super("KafkaConsumerTest", false);
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, MyKafkaProperties.KAFKA_BROKER_LIST);
@@ -48,14 +47,14 @@ public class MyConsumer extends ShutdownableThread {
         this.consumer = new KafkaConsumer<Integer, String>(properties);
 
         //消费指定分区
-        TopicPartition p0 = new TopicPartition(MyKafkaProperties.TOPIC, 0);
-        this.consumer.assign(Arrays.asList(p0));
+//        TopicPartition p0 = new TopicPartition(MyKafkaProperties.TOPIC, 0);
+//        this.consumer.assign(Arrays.asList(p0));
     }
 
     @Override
     public void doWork() {
         //订阅发布 与消费制定分区互斥
-//        consumer.subscribe(Collections.singleton(MyKafkaProperties.TOPIC));
+        consumer.subscribe(Collections.singleton(MyKafkaProperties.TOPIC));
 
         ConsumerRecords<Integer, String> records = consumer.poll(1000);
         for (ConsumerRecord<Integer, String> record : records) {
@@ -65,7 +64,7 @@ public class MyConsumer extends ShutdownableThread {
     }
 
     public static void main(String[] args) {
-        MyConsumer consumer = new MyConsumer();
+        MyConsumer1 consumer = new MyConsumer1();
         System.out.println("---------start---------");
         consumer.start();
     }
