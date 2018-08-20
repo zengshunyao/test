@@ -26,7 +26,7 @@ public class BootStrap {
         Reader reader = Resources.getResourceAsReader("mybatis/mybatis-config.xml");
         //构建sqlSession的工厂
         MySqlSessionFactory sessionFactory = new MySqlSessionFactoryBuilder().build(reader,
-                new Environment("develop", null, null), new MyConfiguration());
+                new Environment("conf/develop", null, null), new MyConfiguration());
 
         MySqlSession session = sessionFactory.openSession();
         EmpMapper mapper = session.getMapper(EmpMapper.class);
