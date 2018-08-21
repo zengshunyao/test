@@ -17,8 +17,19 @@ import java.util.List;
  *                    All Rights Reserved.
  */
 public class LuaDemo {
+
+
     public static void main(String[] args) {
-        String lua = "";
+        String lua = "local times=redis.call('incr',KEYS[1]);\n" +
+                "if times == 1 then\n" +
+                "    redis.call('expire',KEYS[1],ARGV[1]);\n" +
+                "end\n" +
+                "\n" +
+                "if times >tonumber( ARGV[2] ) then \n" +
+                "return 0;\n" +
+                "end\n" +
+                "\n" +
+                "return 1;";
 
         Jedis jedis = null;
         String sha = null;
