@@ -14,6 +14,11 @@ package com.funi.distributedcomputer.kafka;
 public class MyKafkaProperties {
 
 
-    public static final String KAFKA_BROKER_LIST = "47.52.33.73:9092";
+    //阿里云
+//    public static final String KAFKA_BROKER_LIST = "47.52.33.73:9092";
+
+    //家里虚拟机
+    public static final String KAFKA_BROKER_LIST = "192.168.137.101:9092,192.168.137.102:9092,192.168.137.103:9092";
+
     public static final String TOPIC = "ONE";
 }

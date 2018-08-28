@@ -39,7 +39,7 @@ public class MyConsumer extends ShutdownableThread {
         properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         //设置最开始的offset偏移量为当前group.id的最早消息
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-//设置心跳时间
+        //设置心跳时间
         properties.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
         //对key和value设置方序列化对象
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class.getName());

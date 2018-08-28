@@ -69,10 +69,12 @@ public class CommitDemoMyConsumer extends ShutdownableThread {
         }
         if (buffer.size() >= 5) {
             LOG.info("Begin Execute Commit Offset Operation[more than 5]");
-            consumer.commitSync();
+            //异步提交
+            consumer.commitAsync();
             buffer.clear();
         } else {
             LOG.info("Begin Execute Commit Offset Operation[less than 5]");
+            //同步提交
             consumer.commitSync();
             buffer.clear();
         }

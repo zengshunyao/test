@@ -26,12 +26,19 @@ public class MyKafkaProducer {
     }
 
     public void sendMsg() {
-        this.producer.send(new ProducerRecord<Integer, String>(this.topic, 1, "message"), new Callback() {
-            @Override
-            public void onCompletion(RecordMetadata recordMetadata, Exception e) {
-                System.out.println("message send to [" + recordMetadata.partition() + "],offset[" + recordMetadata.offset() + "]");
+        for (int i = 0; i < 10; i++) {
+            this.producer.send(new ProducerRecord<Integer, String>(this.topic, i, "message"), new Callback() {
+                @Override
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    System.out.println("message send to [" + recordMetadata.partition() + "],offset[" + recordMetadata.offset() + "]");
+                }
+            });
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
+        }
     }
 
 
@@ -43,6 +50,6 @@ public class MyKafkaProducer {
         //commit kafka
         //放到同一个事务  同一个库
 
-        System.in.read();
+        //System.in.read();
     }
 }
