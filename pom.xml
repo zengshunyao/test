@@ -1038,14 +1038,11 @@
                 </excludes>
             </resource>
             <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
                 <directory>${basedir}/src/main/resources</directory>
                 <excludes>
                     <exclude>conf/**</exclude>
                 </excludes>
+                <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>${basedir}/src/main/resources/conf/${profiles.active}</directory>
