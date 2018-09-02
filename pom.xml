@@ -1022,6 +1022,19 @@
             <version>1.7.21</version>
             <scope>test</scope>
         </dependency>
+
+        <!--爬虫-->
+        <dependency>
+            <groupId>edu.uci.ics</groupId>
+            <artifactId>crawler4j</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.11.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
