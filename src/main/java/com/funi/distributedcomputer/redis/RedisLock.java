@@ -19,15 +19,18 @@ import java.util.UUID;
  */
 public class RedisLock {
     /**
-     * @param key
-     * @param timeout
+     * @param key     key
+     * @param timeout 秒数seconds
      * @return
      */
     public String getLock(String key, int timeout) {
         try {
             Jedis jedis = RedisManager.getJedis();
+
             String value = UUID.randomUUID().toString();
+
             long end = System.currentTimeMillis() + timeout;
+
             while (System.currentTimeMillis() < end) {
                 //阻塞
                 if (1 == jedis.setnx(key, value)) {
@@ -35,10 +38,12 @@ public class RedisLock {
                     //锁设置成功,redis操作成功
                     return value;
                 }
+
                 //检测过期时间
-                if (jedis.ttl(key) == 1) {
+                if (jedis.ttl(key) == timeout) {
                     jedis.expire(key, timeout);
                 }
+
                 //睡1秒
                 Thread.sleep(1000);
             }
@@ -76,9 +81,10 @@ public class RedisLock {
         return false;
     }
 
-    public static void main(String[] args) {
-        RedisLock lock = new RedisLock();
 
+    public static void main(String[] args) {
+
+        RedisLock lock = new RedisLock();
         String lockKey = "lock:aaa";
         String lockId = lock.getLock(lockKey, 1000);
         if (lockId != null) {

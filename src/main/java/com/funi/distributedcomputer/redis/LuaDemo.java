@@ -32,7 +32,7 @@ public class LuaDemo {
                 "return 1;";
 
         Jedis jedis = null;
-        String sha = null;
+
         try {
             jedis = RedisManager.getJedis();
 
@@ -42,11 +42,16 @@ public class LuaDemo {
             List<String> argvs = new LinkedList<String>();
             argvs.add("value");
 
+
+
             //1.第一种;存在sha
+            String sha = null;
             if (!jedis.scriptExists(sha)) {
                 sha = jedis.scriptLoad(lua);
             }
             jedis.evalsha(sha, keys, argvs);
+
+
 
             //2.第二种;不用sha
 //            jedis.eval(lua, keys, argvs);
