@@ -21,11 +21,11 @@ public class LuaDemo {
 
     public static void main(String[] args) {
         String lua = "local times=redis.call('incr',KEYS[1]);\n" +
-                "if times == 1 then\n" +
+                "if tonumber(times) == 1 then\n" +
                 "    redis.call('expire',KEYS[1],ARGV[1]);\n" +
                 "end\n" +
                 "\n" +
-                "if times >tonumber( ARGV[2] ) then \n" +
+                "if tonumber(times) >tonumber( ARGV[2] ) then \n" +
                 "return 0;\n" +
                 "end\n" +
                 "\n" +
@@ -37,26 +37,29 @@ public class LuaDemo {
             jedis = RedisManager.getJedis();
 
             List<String> keys = new LinkedList<String>();
-            keys.add("key");
+            keys.add("ip:limit:192.168.137.101");
 
             List<String> argvs = new LinkedList<String>();
-            argvs.add("value");
-
+            argvs.add("6000");
+            argvs.add("10");
 
 
             //1.第一种;存在sha
-            String sha = null;
-            if (!jedis.scriptExists(sha)) {
-                sha = jedis.scriptLoad(lua);
-            }
-            jedis.evalsha(sha, keys, argvs);
-
+//            String sha = "";
+//            if (!jedis.scriptExists(sha)) {
+//                sha = jedis.scriptLoad(lua);
+//            }
+//            Object object = jedis.evalsha(sha, keys, argvs);
+//            System.out.println(object);
 
 
             //2.第二种;不用sha
-//            jedis.eval(lua, keys, argvs);
+            Object object= jedis.eval(lua, keys, argvs);
+            System.out.println(object);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            jedis.close();
         }
     }
 }
