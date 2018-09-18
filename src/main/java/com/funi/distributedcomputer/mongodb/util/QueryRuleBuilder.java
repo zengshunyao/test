@@ -1,9 +1,11 @@
 package com.funi.distributedcomputer.mongodb.util;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,10 +22,12 @@ public class QueryRuleBuilder {
 
     public QueryRuleBuilder(QueryRule queryRule) {
         //根据RuleList 来循环，动态生成各种Criteria
+//        queryRule.getRuleList();
         for (QueryRule.Rule rule : queryRule.getRuleList()) {
             switch (rule.getType()) {
                 case BETWEEN:
                     System.out.println();
+                    this.processBetween(rule);
                     break;
                 case EQ:
                     break;
@@ -56,7 +60,11 @@ public class QueryRuleBuilder {
             }
         }
         this.query = new Query(this.criteria);
-        queryRule.getRuleList();
+
+        //排序
+        List<Sort.Order> orders = new LinkedList<>();
+        orders.add(new Sort.Order(Sort.Direction.ASC, "age"));
+        this.query.with(new Sort(orders));
     }
 
     public Query getQuery() {
@@ -75,7 +83,7 @@ public class QueryRuleBuilder {
                         Pattern.CASE_INSENSITIVE);
 
         Matcher match = pattern.matcher(sql);
-        StringBuilder builder = new StringBuilder();
+        StringBuffer builder = new StringBuffer();
         while (match.find()) {
             match.appendReplacement(builder, "");
         }
@@ -108,11 +116,7 @@ public class QueryRuleBuilder {
     }
 
     private void processEqual(QueryRule.Rule rule) {
-        if (ArrayUtils.isEmpty(rule.getValues())) {
-            return;
-        } else {
-            add(rule.getAndOr(), rule.getPropertyName(), "=", rule.getValues()[0]);
-        }
+        this.criteria.and(rule.getPropertyName()).is(rule.getValues()[0]);
     }
 
     /**

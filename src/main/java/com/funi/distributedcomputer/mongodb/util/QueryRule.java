@@ -8,6 +8,9 @@ public enum QueryRule {
     IN, NOT_IN, IS_NULL, IS_NOT_NULL, IS_EMPTY,
     IS_NOT_EMPTY, ASC_ORDER, DESC_ORDER;
 
+    public static QueryRule getInstance() {
+        return QueryRule.BETWEEN;
+    }
 
     private List<Rule> ruleList;
 
