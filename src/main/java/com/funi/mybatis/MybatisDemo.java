@@ -14,7 +14,7 @@ public class MybatisDemo {
 
     public static void main(String[] args) {
         //mybatis的配置文件
-        String resource = "mybatis-conf.xml";
+        String resource = "mybatis/mybatis-conf.xml";
         //使用类加载器加载mybatis的配置文件（它也加载关联的映射文件）
         InputStream is = MybatisDemo.class.getClassLoader().getResourceAsStream(resource);
         //构建sqlSession的工厂

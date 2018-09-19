@@ -25,6 +25,6 @@
     <!--mvc-->
     <!--<import resource="spring-mvc.xml"/>-->
 
-    <import resource="spring-task.xml"/>
+    <import resource="spring/spring-task.xml"/>
     <!--<import resource="spring-taskCustom.xml"/>-->
 </beans>
