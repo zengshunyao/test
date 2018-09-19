@@ -12,3 +12,4 @@ rebel.xml
 .project
 
 #src/test/*
+catalina.home_IS_UNDEFINED
