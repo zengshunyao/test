@@ -46,6 +46,94 @@ Predicate<T> :断言型接口
     boolean test(T t);
 */
 
+####Lambda表达式的 
+
+一、方法引用： 
+若Lambda体中的内容有方法已经实现了，我们可以使用“方法引用”（可以理解为方法引用是Lambda表达式的另外一种表现形式）
+
+主要语法：
+
+对象：：实例方法名
+
+类：：静态方法名
+
+类：：实例方法名
+
+注意： 
+①Lambda体中调用方法的参数列表与返回值类型，要与函数式接口中抽象方法的函数列表和返回值类型一致。 
+②若Lambda参数列表中的第一参数是实例方法的调用者，而第二个参数是实例方法的参数时，可以使用ClassName：：method进行调用。
+
+####二、构造器引用
+
+格式：
+
+ClassName：：new
+
+注意：需要引用的构造器的参数列表要与函数式接口中抽象方法的参数列表保持一致。
+
+三、数组引用
+
+格式：
+
+Type[]：：new
+
+####4、Stream流
+
+一系列流水线式的中间操作。(见 category.jdk.JDK18.LambdaTest.test4)
+
+流是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
+
+注意： 
+①Stream自己不会存储元素。 
+②Stream不会改变源对象。相反，会返回持有新结果的新Stream。 
+③Stream操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+
+
+
+操作的三个步骤： 
+1、创建一个流Stream 
+2、中间操作 
+3、终止操作
+
+代码见category.jdk.JDK18.LambdaTest.test4
+
+中间操作：API
+
+多个中间操作可以连接起来形成一个流水线，除非流水想上出发终止操作。否则中间操作不会执行任何的处理，而在终止操作时一次性全部处理，成为“惰性求值”。
+
+筛选和切片
+
+代码见category.jdk.JDK18.LambdaTest.test5
+
+映射 
+
+接受Lambda，将元素转换成其他形式或提取信息，接受一个函数作为参数， 该函数会被应用到每个元素上，并将其映射成一个新的元素。
+
+代码见:
+    category.jdk.JDK18.StreamTest3.test2,
+    category.jdk.JDK18.StreamTest3.test3,
+    category.jdk.JDK18.StreamTest4.test1
+
+
+Stream的终止操作 
+- allMatch – 检查是否匹配所有元素 
+- anyMatch – 检查是否至少匹配一个元素 
+- noneMatch – 检查是否没有匹配所有元素 
+- findFirst – 返回第一个元素 
+- count – 返回流中元素的总个数 
+- max – 返回流中最大值 
+- min – 返回流中最小值
+
+代码见:category.jdk.JDK18.StreamTest5.test1
+
+终止操作：归约reduce
+
+map和reduce的连接通常称为map-reduce模式，因google用它进行网络搜索而出名
+
+
+---------------------
+
+本文来自 op134972 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 
 ---------------------
 
 本文来自 op134972 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 

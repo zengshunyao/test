@@ -2,10 +2,8 @@ package category.jdk.JDK18;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 /**********************************************************************
  * &lt;p&gt;文件名：null.java &lt;/p&gt;
@@ -134,4 +132,63 @@ public class LambdaTest {
         R method(T t1, T t2);
     }
 
+
+    @Test
+    public void test4() {
+        //1. 可以通过Collections系列集合提供的stream()或parallelStream()
+        List<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        Stream<String> stream = list.stream();
+        stream.forEach(System.out::println);
+
+        //2. 通过Arrays中的静态方法stream()获取数组流
+        Employee[] emps = new Employee[]{
+                new Employee("张三", "上海", 5000, 22),
+                new Employee("李四", "北京", 4000, 23),
+                new Employee("c五", "日本", 6000, 50)};
+        Stream<Employee> stream1 = Arrays.stream(emps);
+        stream1.forEach(System.out::println);
+
+        //3. 通过Stream类中的静态方法of()
+        Stream<String> stream3 = Stream.of("A", "B", "C");
+        stream3.forEach(System.out::println);
+
+        //4. 创建无限流
+        //迭代
+        Stream.iterate(0, x -> x + 2).limit(10).forEach(System.out::println);
+
+        //5.生成
+        Stream<Double> generate = Stream.generate(() -> Math.random() * 100 % 100);
+        generate.limit(5).forEach(System.out::println);
+    }
+
+    /**
+     * 筛选和切片
+     * <p>
+     * filter -- 接受Lambda，从流中排除某些元素
+     * limit -- 截断流，使其元素不超过某个给定数量
+     * skip -- 跳过元素，返回一个扔掉了前n个元素的流，若流中元素不足n个，则返回一个空流，与limit互补。
+     * distinct -- 去重，通过hashcode和equals去重。
+     */
+    @Test
+    public void test5() {
+        List<Employee> list = Arrays.asList(
+                new Employee("张三", "上海", 5000, 22),
+                new Employee("李四", "北京", 4000, 23),
+                new Employee("c五", "东京", 6000, 50),
+                new Employee("b七", "香港", 7000, 50),
+                new Employee("赵六", "纽约", 1000, 8),
+                new Employee("王八", "首尔", 1000, 31)
+        );
+        Stream<Employee> stream = list.stream();//创建流
+
+        stream.filter(e -> e.getAge() > 25)//过滤符合条件的流元素
+                .limit(5)//只取5个
+                .skip(2)//跳过2个
+                .distinct()//去重，需重写hashcode和equals方法
+                .forEach(System.out::println);//终止操作，获取流
+
+    }
 }

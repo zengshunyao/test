@@ -1,5 +1,7 @@
 package category.jdk.JDK18;
 
+import java.util.Objects;
+
 /**********************************************************************
  * &lt;p&gt;文件名：null.java &lt;/p&gt;
  * &lt;p&gt;文件描述：${DESCRIPTION}(描述该文件做什么)
@@ -16,6 +18,23 @@ public class Employee {
     private String from;
     private int salary;
     private int age;
+    private Status status = Employee.Status.FREE;
+
+    public Employee(String name, int salary, int age, Status status) {
+        this.name = name;
+        this.salary = salary;
+        this.age = age;
+        this.status = status;
+    }
+
+    public enum Status {
+        FREE, BUSY, VOCATION;
+
+        @Override
+        public String toString() {
+            return String.format("Status{%s}", this.name());
+        }
+    }
 
     public Employee(String name, String from, int salary, int age) {
         this.name = name;
@@ -54,5 +73,41 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", from='" + from + '\'' +
+                ", salary=" + salary +
+                ", age=" + age +
+                ", status=" + status +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return getSalary() == employee.getSalary() &&
+                getAge() == employee.getAge() &&
+                Objects.equals(getName(), employee.getName()) &&
+                Objects.equals(getFrom(), employee.getFrom()) &&
+                getStatus() == employee.getStatus();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getFrom(), getSalary(), getAge(), getStatus());
     }
 }
