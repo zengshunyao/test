@@ -32,11 +32,11 @@ public class StreamTest6 {
         Integer reduce = list.stream().reduce(0, (x, y) -> x + y);
         System.out.println(reduce);
 
-        Optional<Integer> reduce1 = emps.stream()
-                .map(Employee::getSalary)//现将salsry映射出来
+        Optional<Integer> sum = emps.stream()
+                .map(Employee::getSalary)//现将salary映射出来
                 .reduce(Integer::sum);//进行归约求和
 
-        System.out.println(reduce1.get());
+        System.out.println(sum.get());
     }
 
     final List<Employee> emps = Arrays.asList(

@@ -1,5 +1,6 @@
 package category.jdk.JDK18;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**********************************************************************
@@ -13,12 +14,16 @@ import java.util.Objects;
  * Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  *                    All Rights Reserved.
  */
-public class Employee {
-    private String name;
-    private String from;
-    private int salary;
-    private int age;
+public class Employee implements Serializable, Cloneable {
+    private String name = "未知";
+    private String from = "北京";
+    private int salary = 1800;
+    private int age = 18;
     private Status status = Employee.Status.FREE;
+
+    public Employee() {
+        super();
+    }
 
     public Employee(String name, int salary, int age, Status status) {
         this.name = name;

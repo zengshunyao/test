@@ -130,10 +130,48 @@ Stream的终止操作
 
 map和reduce的连接通常称为map-reduce模式，因google用它进行网络搜索而出名
 
+代码见:category.jdk.JDK18.StreamTest6.test1。
 
+终止操作：收集Collect（很强大） 
+将流转换成其他格式，接受一个Collector接口的实现，用于给Stream中元素做汇总的操作。
+
+Collector接口中方法的实现决定了如何对流进行收集操作（如收集到List、Set、Map）中，Collectors实用类提供了很多静态方法，可以方便的创建常用收集器实例，具体方法见API
+
+代码见:
+      category.jdk.JDK18.StreamTest8.test1,
+      category.jdk.JDK18.StreamTest8.test2,
+      category.jdk.JDK18.StreamTest8.test3,
+      category.jdk.JDK18.StreamTest8.test4。
+
+###5、并行流
+    
+Fork/Join框架： 
+在必要的情况下，将一个大任务进行必要的拆分Fork成若干个小任务，再将小任务的运算结果进行Join汇总。
+
+Fork/Join框架和传统线程池的区别： 
+采用“工作窃取”模式（Working-stealing），即当执行新的任务时它可以将其拆分分成更小的任务执行，并将小任务加到线程队列中，然后再从一个随机线程的队列中偷一个并把它放在自己的队列中。
+
+相对于一般的线程池实现，fork/join框架的优势体现在对其中包含的任务的处理方式上，如果一个线程正在执行的任务由于某些原因无法继续运行，那么该线程会处于等待状态，而在fork/join框架实现中，如果某个子问题由于等待另外一个子问题的完成而无法继续运行，那么处理该子问题的线程会主动寻找其他尚未运行的子问题来执行，这种方式减少了线程等待的时间，提高了性能。
+
+并行流就是把一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。 
+Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API 可以声明性地通过parallel() 与sequential() 在并行流与顺序流之间进行切换。
+    
+
+###6、Optional类
+   
+Optional<T> 类(java.util.Optional) 是一个容器类，代表一个值存在或不存在，原来用null 表示一个值不存在，现在Optional 可以更好的表达这个概念。并且可以避免空指针异常。
+
+常用方法： 
+- Optional.of(T t) : 创建一个Optional 实例 
+- Optional.empty() : 创建一个空的Optional 实例 
+- Optional.ofNullable(T t):若t 不为null,创建Optional 实例,否则创建空实例 
+- isPresent() : 判断是否包含值 
+- orElse(T t) : 如果调用对象包含值，返回该值，否则返回t 
+- orElseGet(Supplier s) :如果调用对象包含值，返回该值，否则返回s 获取的值 
+- map(Function f): 如果有值对其处理，并返回处理后的Optional，否则返回Optional.empty() 
+- flatMap(Function mapper):与map 类似，要求返回值必须是Optional
+   
+   
 ---------------------
-
-本文来自 op134972 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 
----------------------
-
-本文来自 op134972 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 
+本文来自 op134972 的CSDN 博客 ，全文地址请点击：
+https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 
