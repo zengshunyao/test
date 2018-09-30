@@ -73,6 +73,19 @@ public class StreamTest3 {
                 .flatMap(StreamTest3::getCharacter)//大流中直接包含的是流元素，相当于add和addAll的区别。
                 .forEach(System.out::print);
         System.out.println();
+
+        System.out.println("-------------------------------------");
+
+        //3.大流中直接包含流元素
+        list.stream().flatMap(str -> {
+            final List<Character> charList = new LinkedList<>();
+            for (char c : str.toCharArray()) {
+                charList.add(c);
+            }
+            return charList.stream();
+        })//大流中直接包含的是流元素，相当于add和addAll的区别。
+                .forEach(System.out::print);
+        System.out.println();
     }
 
     public static Stream<Character> getCharacter(final String str) {

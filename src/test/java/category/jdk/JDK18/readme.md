@@ -156,6 +156,10 @@ Fork/Join框架和传统线程池的区别：
 并行流就是把一个内容分成多个数据块，并用不同的线程分别处理每个数据块的流。 
 Java 8 中将并行进行了优化，我们可以很容易的对数据进行并行操作。Stream API 可以声明性地通过parallel() 与sequential() 在并行流与顺序流之间进行切换。
     
+代码见:
+      category.jdk.JDK18.StreamTest9.test1,
+      category.jdk.JDK18.StreamTest9.test2,
+      category.jdk.JDK18.StreamTest9.test3.    
 
 ###6、Optional类
    
@@ -170,8 +174,10 @@ Optional<T> 类(java.util.Optional) 是一个容器类，代表一个值存在�
 - orElseGet(Supplier s) :如果调用对象包含值，返回该值，否则返回s 获取的值 
 - map(Function f): 如果有值对其处理，并返回处理后的Optional，否则返回Optional.empty() 
 - flatMap(Function mapper):与map 类似，要求返回值必须是Optional
-   
+
+代码见:
+      category.jdk.JDK18.OptinalTest1.test1;   
    
 ---------------------
 本文来自 op134972 的CSDN 博客 ，全文地址请点击：
-https://blog.csdn.net/op134972/article/details/76408237?utm_source=copy 
+StreamTest3

@@ -27,17 +27,19 @@ public class StreamTest9 {
      */
     @Test
     public void test1() {
-        Instant start = Instant.now();
-        ForkJoinPool pool = new ForkJoinPool();
-        ForkJoinTask<Long> task = new ForkJoinCalculate(0, 100000000L);
+        final Instant start = Instant.now();
+        final ForkJoinPool pool = new ForkJoinPool();
+        final ForkJoinTask<Long> task = new ForkJoinCalculate(0, 100000000L);
 
-        Long sum = pool.invoke(task);
-        Instant end = Instant.now();
+        final Long sum = pool.invoke(task);
+        final Instant end = Instant.now();
 
-        System.out.println(Duration.between(start, end).toMillis());
+        System.out.println("花费时间：" + Duration.between(start, end).toMillis()
+                + "ms,计算结果" + sum);
     }
 
-    public class ForkJoinCalculate extends RecursiveTask<Long> {
+
+    private static class ForkJoinCalculate extends RecursiveTask<Long> {
 
         private long start;
         private long end;
@@ -87,10 +89,9 @@ public class StreamTest9 {
             sum += i;
         }
 
-
         Instant end = Instant.now();
-        System.out.println(Duration.between(start, end).toMillis());
-
+        System.out.println("花费时间：" + Duration.between(start, end).toMillis()
+                + "ms,计算结果" + sum);
     }
 
     /**
@@ -106,10 +107,23 @@ public class StreamTest9 {
                 //.sequential()//串行流
                 .reduce(0, Long::sum);
 
+//        long sum = LongStream.rangeClosed(0, 100000000L).sequential().reduce(0, Long::sum);
+
         Instant end = Instant.now();
 
-        System.out.println(Duration.between(start, end).toMillis());
+        System.out.println("花费时间：" + Duration.between(start, end).toMillis()
+                + "ms,计算结果" + sum);
     }
-//并行流将会充分使用多核的优势，多线程并行执行，基数越大，效果越明显。其底层还是Fork/Join框架。只不过SUN公司优化的更好，比自己实现更高效
+//并行流将会充分使用多核的优势，多线程并行执行，基数越大，效果越明显。其底层还是Fork/Join框架。
+// 只不过SUN公司优化的更好，比自己实现更高效
 
+    public static void main(String[] args) {
+        StreamTest9 test = new StreamTest9();
+        System.out.println("--------自己实现多线程--------");
+        test.test1();
+        System.out.println("--------单线程--------");
+        test.test2();
+        System.out.println("--------jdk并行线程--------");
+        test.test3();
+    }
 }
