@@ -15,6 +15,7 @@ import java.util.Objects;
  *                    All Rights Reserved.
  */
 public class Employee implements Serializable, Cloneable {
+    private static final long serialVersionUID = -2463109228077677447L;
     private String name = "未知";
     private String from = "北京";
     private int salary = 1800;
