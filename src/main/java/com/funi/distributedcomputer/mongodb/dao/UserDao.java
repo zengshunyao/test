@@ -5,6 +5,8 @@ import com.funi.distributedcomputer.mongodb.entity.User;
 import com.funi.distributedcomputer.mongodb.util.QueryRule;
 import org.springframework.stereotype.Repository;
 
+//import javax.sql.DataSource;
+
 import javax.activation.DataSource;
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;
