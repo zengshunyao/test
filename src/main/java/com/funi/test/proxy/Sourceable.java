@@ -1,4 +1,4 @@
-package com.funi.test;
+package com.funi.test.proxy;
 
 public interface Sourceable {
 
