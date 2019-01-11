@@ -1,5 +1,7 @@
 package other.interview;
 
+import java.util.LinkedHashMap;
+
 /**
  * *******************************************************************
  * &lt;p&gt;文件名：${file_name} &lt;/p&gt;
@@ -14,7 +16,9 @@ package other.interview;
  */
 public class Test {
     public static void main(String[] args) {
-        test4();
+//        test4();
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        linkedHashMap.put("sss", null);
     }
 
     public static void test1() {

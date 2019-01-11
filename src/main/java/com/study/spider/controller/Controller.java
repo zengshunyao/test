@@ -1,7 +1,6 @@
 package com.study.spider.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.study.spider.model.IndustrialCrawler;
 import com.study.spider.model.SupplyAndSaleCrawler;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
