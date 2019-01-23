@@ -70,12 +70,12 @@ public class ContextClassLoaderLocal {
     /**
      * 全局初始值初始化标记
      */
-    private boolean globalValueInitialized = false;
+    private volatile boolean globalValueInitialized = false;
 
     /**
      * 全局初始值
      */
-    private Object globalValue;
+    private volatile Object globalValue;
 
     /**
      * 构造方法
