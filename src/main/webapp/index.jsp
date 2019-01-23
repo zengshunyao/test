@@ -27,10 +27,10 @@
 <script type="text/javascript">
     function save() {
         $.post("SSlController/testSave", {name: $('#name').val()},
-                function (data) {
-                    alert(data);
-                    console.log(data);
-                },
-                "json");//这里返回的类型有：json,html,xml,text
+            function (data) {
+                alert(data);
+                console.log(data);
+            },
+            "json");//这里返回的类型有：json,html,xml,text
     }
 </script>

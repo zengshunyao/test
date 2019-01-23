@@ -5,14 +5,14 @@ import java.util.LinkedHashMap;
 
 /**
  * FIFO缓存实现
- *
+ * <p>
  * Created by shunyao.zeng on 9/25/14.
  */
 public class FIFOCache<K, V> extends AbstractCacheMap<K, V> {
 
     /**
      * 构造访求
-     * 
+     *
      * @param cacheSize
      * @param defaultExpire
      */

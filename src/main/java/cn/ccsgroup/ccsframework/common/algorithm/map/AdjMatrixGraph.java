@@ -1,4 +1,4 @@
-package cn.ccsgroup.ccsframework.common;
+package cn.ccsgroup.ccsframework.common.algorithm.map;
 
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;

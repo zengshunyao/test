@@ -23,8 +23,8 @@ public class TextUtils {
             return null;
         }
         //最后一个中文全角空格换成英文，防止strin的trim方法失效
-        String[][] chars = new String[][] { { "&", "&amp;" }, { "<", "&lt;" }, { ">", "&gt;" }, { "\"", "&quot;" },
-                { "　", " " } };
+        String[][] chars = new String[][]{{"&", "&amp;"}, {"<", "&lt;"}, {">", "&gt;"}, {"\"", "&quot;"},
+                {"　", " "}};
         return replaceChars(str, chars);
     }
 
@@ -38,8 +38,8 @@ public class TextUtils {
         if (StrUtils.isBlank(str)) {
             return null;
         }
-        String[][] chars = new String[][] { { "&amp;", "&" }, { "&lt;", "<" }, { "&gt;", ">" }, { "&quot;", "\"" },
-                { "　", " " } };
+        String[][] chars = new String[][]{{"&amp;", "&"}, {"&lt;", "<"}, {"&gt;", ">"}, {"&quot;", "\""},
+                {"　", " "}};
         return replaceChars(str, chars);
     }
 

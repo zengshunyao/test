@@ -8,23 +8,29 @@ import java.util.List;
 
 /**
  * excel sheet信息及数据
- *
+ * <p>
  * Created by shunyao.zeng on 7/28/14.
  */
 public class ExcelSheet {
 
-    /** sheet标题 */
-    private String         sheetName;
+    /**
+     * sheet标题
+     */
+    private String sheetName;
 
-    /** 行标题，默认为第一行 */
-    private List<String>   rowTitles;
+    /**
+     * 行标题，默认为第一行
+     */
+    private List<String> rowTitles;
 
-    /** sheet中的行 */
+    /**
+     * sheet中的行
+     */
     private List<ExcelRow> rows;
 
     /**
      * 获取行标题
-     * 
+     *
      * @return
      */
     public List<String> getRowTitles() {

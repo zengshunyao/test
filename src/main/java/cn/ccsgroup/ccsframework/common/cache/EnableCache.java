@@ -9,9 +9,11 @@ import java.lang.annotation.Target;
  * Created by shunyao.zeng on 1/6/15.
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.METHOD, ElementType.TYPE })
+@Target({ElementType.METHOD, ElementType.TYPE})
 public @interface EnableCache {
 
-    /** 数据实体对象 */
+    /**
+     * 数据实体对象
+     */
     Class<?>[] value();
 }

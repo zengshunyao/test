@@ -19,7 +19,7 @@ import java.util.Map;
  * All Rights Reserved.
  */
 @Repository
-public class ScheduleJobDao{
+public class ScheduleJobDao {
     public List<ScheduleJob> queryScheduleJobList(Map param) {
         return null;
     }

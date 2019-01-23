@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * LFU缓存实现
- *
+ * <p>
  * Created by shunyao.zeng on 9/25/14.
  */
 public class LFUCache<K, V> extends AbstractCacheMap<K, V> {
@@ -22,8 +22,7 @@ public class LFUCache<K, V> extends AbstractCacheMap<K, V> {
     }
 
     /**
-     * 实现删除过期对象 和 删除访问次数最少的对象 
-     *
+     * 实现删除过期对象 和 删除访问次数最少的对象
      */
     @Override
     protected int eliminateCache() {

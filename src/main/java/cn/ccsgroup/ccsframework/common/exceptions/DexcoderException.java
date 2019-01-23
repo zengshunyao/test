@@ -14,12 +14,12 @@ public class DexcoderException extends RuntimeException {
     /**
      * Exception code
      */
-    protected String          resultCode       = "UN_KNOWN_EXCEPTION";
+    protected String resultCode = "UN_KNOWN_EXCEPTION";
 
     /**
      * Exception message
      */
-    protected String          resultMsg        = "未知异常";
+    protected String resultMsg = "未知异常";
 
     /**
      * Instantiates a new DexcoderException.

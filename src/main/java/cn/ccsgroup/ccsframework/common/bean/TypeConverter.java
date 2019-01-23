@@ -11,14 +11,14 @@ public interface TypeConverter {
 
     /**
      * 获取源类型class
-     * 
+     *
      * @return
      */
     Class<?> getSourceTypeClass();
 
     /**
      * 获取目标类型class
-     * 
+     *
      * @return
      */
     Class<?> getTargetTypeClass();
@@ -29,7 +29,7 @@ public interface TypeConverter {
      *
      * @param actualSourceClass the actual source class
      * @param actualTargetClass the actual target class
-     * @param value The input value to be converted
+     * @param value             The input value to be converted
      * @return The converted value
      */
     Object convert(Class<?> actualSourceClass, Class<?> actualTargetClass, Object value);

@@ -28,7 +28,7 @@ public class ClassUtils {
      * for proper garbage collection in case of multiple class loaders.
      */
     private static final Map<Class<?>, BeanInfo> CLASS_CACHE = Collections
-                                                                 .synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
+            .synchronizedMap(new WeakHashMap<Class<?>, BeanInfo>());
 
     /**
      * 获取类本身的BeanInfo，不包含父类属性
@@ -162,7 +162,7 @@ public class ClassUtils {
 
     /**
      * 设置method访问权限
-     * 
+     *
      * @param method
      */
     public static void methodAccessible(Method method) {
@@ -218,7 +218,7 @@ public class ClassUtils {
 
     /**
      * 将value的数据类型转换到实际目标类型
-     * 
+     *
      * @param value
      * @return
      */

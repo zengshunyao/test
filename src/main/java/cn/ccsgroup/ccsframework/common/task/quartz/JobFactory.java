@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 任务工厂类,非同步
- *
+ * <p>
  * User: shunyao.zeng
  * Date: 14-1-3
  * Time: 上午10:11
@@ -27,7 +27,7 @@ public class JobFactory implements Job {
         LOG.info("JobFactory execute");
 
         ScheduleJob scheduleJob = (ScheduleJob) context.getMergedJobDataMap().get(
-            ScheduleJobVo.JOB_PARAM_KEY);
+                ScheduleJobVo.JOB_PARAM_KEY);
 
         System.out.println("jobName:" + scheduleJob.getJobName() + "  " + scheduleJob);
         System.out.println("Successs.............");

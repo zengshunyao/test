@@ -42,6 +42,7 @@ public class EncryptUtils {
 
     /**
      * 使用 HMAC-SHA1 签名方法对对encryptText进行签名
+     *
      * @param encryptText 被签名的字符串
      * @param encryptKey  密钥
      * @return

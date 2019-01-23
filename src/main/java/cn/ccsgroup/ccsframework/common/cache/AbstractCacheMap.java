@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 缓存map抽象实现
- * 
+ * <p>
  * Created by shunyao.zeng on 7/24/14.
  */
 public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
@@ -19,20 +19,30 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
             this.lastAccess = System.currentTimeMillis();
         }
 
-        /** 缓存key */
+        /**
+         * 缓存key
+         */
         final K2 key;
 
-        /** 缓存对象 */
+        /**
+         * 缓存对象
+         */
         final V2 cachedObject;
 
-        /** 最后访问时间 */
-        long     lastAccess;
+        /**
+         * 最后访问时间
+         */
+        long lastAccess;
 
-        /** 访问次数 */
-        long     accessCount;
+        /**
+         * 访问次数
+         */
+        long accessCount;
 
-        /** 对象存活时间(time-to-live) */
-        long     liveTime;
+        /**
+         * 对象存活时间(time-to-live)
+         */
+        long liveTime;
 
         public boolean isExpired() {
             if (liveTime == 0) {
@@ -42,39 +52,54 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
         }
 
         public V2 getObject() {
-            //当过缓存时间时失败，而不是每访问一次就重新计算
-//            lastAccess = System.currentTimeMillis();
+            // 当过缓存时间时失败，而不是每访问一次就重新计算
+            // lastAccess = System.currentTimeMillis();
             accessCount++;
             return cachedObject;
         }
     }
 
-    /** 缓存map */
-    protected Map<K, CacheObject<K, V>>  cacheMap;
+    /**
+     * 缓存map
+     */
+    protected Map<K, CacheObject<K, V>> cacheMap;
 
-    /** 读写锁对象 */
+    /**
+     * 读写锁对象
+     */
     private final ReentrantReadWriteLock cacheLock = new ReentrantReadWriteLock();
 
-    /** 读锁 */
-    private final Lock                   readLock  = cacheLock.readLock();
+    /**
+     * 读锁
+     */
+    private final Lock readLock = cacheLock.readLock();
 
-    /** 写锁 */
-    private final Lock                   writeLock = cacheLock.writeLock();
+    /**
+     * 写锁
+     */
+    private final Lock writeLock = cacheLock.writeLock();
 
-    /** 最大缓存大小 , 0表示无限制 */
-    protected int                        cacheSize;
+    /**
+     * 最大缓存大小 , 0表示无限制
+     */
+    protected int cacheSize;
 
-    /** 默认过期时间, 0表示永不过期 */
-    protected long                       defaultExpire;
+    /**
+     * 默认过期时间, 0表示永不过期
+     */
+    protected long defaultExpire;
 
-    /** 是否设置默认过期时间 */
-    protected boolean                    existCustomExpire;
+    /**
+     * 是否设置默认过期时间
+     */
+    protected boolean existCustomExpire;
 
     /**
      * 获取最大缓存大小
-     * 
+     *
      * @return
      */
+    @Override
     public int getCacheSize() {
         return cacheSize;
     }
@@ -95,6 +120,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      *
      * @return
      */
+    @Override
     public long getDefaultExpire() {
         return defaultExpire;
     }
@@ -114,17 +140,19 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      * @param key
      * @param value
      */
+    @Override
     public void put(K key, V value) {
         this.put(key, value, defaultExpire);
     }
 
     /**
      * 添加缓存对象
-     * 
+     *
      * @param key
      * @param value
-     * @param expire  过期时间
+     * @param expire 过期时间
      */
+    @Override
     public void put(K key, V value, long expire) {
         writeLock.lock();
         try {
@@ -143,10 +171,11 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
 
     /**
      * 获取缓存对象
-     * 
+     *
      * @param key
      * @return
      */
+    @Override
     public V get(K key) {
         readLock.lock();
         try {
@@ -170,6 +199,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      *
      * @return
      */
+    @Override
     public final int eliminate() {
         writeLock.lock();
         try {
@@ -191,6 +221,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      *
      * @return
      */
+    @Override
     public boolean isFull() {
         //无限制
         if (cacheSize == 0) {
@@ -204,6 +235,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      *
      * @param key
      */
+    @Override
     public void remove(K key) {
         writeLock.lock();
         try {
@@ -216,6 +248,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
     /**
      * 清空缓存
      */
+    @Override
     public void clear() {
         writeLock.lock();
         try {
@@ -227,17 +260,20 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
 
     /**
      * 缓存大小
+     *
      * @return
      */
+    @Override
     public int size() {
         return cacheMap.size();
     }
 
     /**
      * 缓存是否为空
-     * 
+     *
      * @return
      */
+    @Override
     public boolean isEmpty() {
         return size() == 0;
     }

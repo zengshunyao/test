@@ -6,19 +6,18 @@ import java.util.Map;
 
 /**
  * LRU缓存实现
- *
+ * <p>
  * Created by shunyao.zeng on 7/24/14.
  */
 public class LRUCache<K, V> extends AbstractCacheMap<K, V> {
 
     /**
      * 构造方法
-     * 
+     *
      * @param cacheSize
      * @param defaultExpire
      */
     public LRUCache(int cacheSize, long defaultExpire) {
-
         super(cacheSize, defaultExpire);
 
         //linkedHash已经实现LRU算法 是通过双向链表来实现，
@@ -26,26 +25,22 @@ public class LRUCache<K, V> extends AbstractCacheMap<K, V> {
         // 新加入的内容直接放在链表头，如此一来，最近被命中的内容就向链表头移动，
         // 需要替换时，链表最后的位置就是最近最少使用的位置
         this.cacheMap = new LinkedHashMap<K, CacheObject<K, V>>(cacheSize + 1, 1f, true) {
+            private static final long serialVersionUID = 4789439462791125917L;
 
-			private static final long serialVersionUID = 4789439462791125917L;
-
-			@Override
+            @Override
             protected boolean removeEldestEntry(Map.Entry<K, CacheObject<K, V>> eldest) {
-
                 return LRUCache.this.removeEldestEntry(eldest);
             }
-
         };
     }
 
     /**
      * 插入元素时是否需要移除最老的元素(超过缓存大小时)
-     * 
+     *
      * @param eldest
      * @return
      */
     private boolean removeEldestEntry(Map.Entry<K, CacheObject<K, V>> eldest) {
-
         if (cacheSize == 0)
             return false;
 
@@ -57,7 +52,6 @@ public class LRUCache<K, V> extends AbstractCacheMap<K, V> {
      */
     @Override
     protected int eliminateCache() {
-
         if (!isNeedClearExpiredObject()) {
             return 0;
         }
@@ -72,7 +66,6 @@ public class LRUCache<K, V> extends AbstractCacheMap<K, V> {
                 count++;
             }
         }
-
         return count;
     }
 

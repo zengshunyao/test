@@ -7,14 +7,16 @@ import java.util.List;
 
 /**
  * 系统返回结果
- * 
+ * <p>
  * User: shunyao.zeng
  * Date: 2/13/14
  * Time: 4:36 PM
  */
 public class RunBinder {
 
-    /** 线程变量，存放运行错误信息 */
+    /**
+     * 线程变量，存放运行错误信息
+     */
     private static ThreadLocal<RunResult> resultHolder = new ThreadLocal<RunResult>();
 
     /**
@@ -37,6 +39,7 @@ public class RunBinder {
 
     /**
      * 添加错误信息，success将变为false
+     *
      * @param errorMsg
      */
     public static void addError(String errorMsg) {
@@ -45,7 +48,7 @@ public class RunBinder {
 
     /**
      * 添加错误信息
-     * 
+     *
      * @param errorCode
      * @param errorMsg
      */
@@ -75,7 +78,7 @@ public class RunBinder {
 
     /**
      * 添加结果信息
-     * 
+     *
      * @param success
      * @param code
      * @param message
@@ -97,7 +100,7 @@ public class RunBinder {
 
     /**
      * 是否成功
-     * 
+     *
      * @return
      */
     public static boolean isSuccess() {
@@ -110,7 +113,7 @@ public class RunBinder {
 
     /**
      * 是否有错误
-     * 
+     *
      * @return
      */
     public static boolean hasErrors() {
@@ -123,7 +126,7 @@ public class RunBinder {
 
     /**
      * 是否有错误
-     * 
+     *
      * @return
      */
     public static boolean hasMessages() {

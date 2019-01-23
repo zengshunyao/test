@@ -13,7 +13,7 @@ import org.springframework.core.convert.converter.ConverterFactory;
  * Date: 14-1-20
  * Time: 下午9:11
  */
-@SuppressWarnings({ "rawtypes", "unchecked" })
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class IEnumConverterFactory implements ConverterFactory<String, Enum> {
 
     /**

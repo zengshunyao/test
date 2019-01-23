@@ -25,10 +25,12 @@ import java.lang.reflect.Method;
 public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapter {
     private static final Logger LOG = Logger.getLogger(AvoidDuplicateSubmissionInterceptor.class);
 
+    //TOKEN key
+    private final static String TOKEN_KEY = "token";
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
-
 //        User user = UserUtil.getUser();
         Object user = null;//UserUtil.getUser();
         if (user != null) {
@@ -39,7 +41,7 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
             if (annotation != null) {
                 boolean needSaveSession = annotation.needSaveToken();
                 if (needSaveSession) {
-                    request.getSession(false).setAttribute("token", TokenProcessor.getInstance().generateToken());
+                    request.getSession(false).setAttribute(TOKEN_KEY, TokenProcessor.getInstance().generateToken());
                 }
 
                 boolean needRemoveSession = annotation.needRemoveToken();
@@ -49,19 +51,23 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
 //                                + request.getServletPath() + "]");
                         return false;
                     }
-                    request.getSession(false).removeAttribute("token");
+                    request.getSession(false).removeAttribute(TOKEN_KEY);
                 }
             }
         }
         return true;
     }
 
+    /**
+     * @param request
+     * @return
+     */
     private boolean isRepeatSubmit(HttpServletRequest request) {
-        String serverToken = (String) request.getSession(false).getAttribute("token");
+        String serverToken = (String) request.getSession(false).getAttribute(TOKEN_KEY);
         if (serverToken == null) {
             return true;
         }
-        String clientToken = request.getParameter("token");
+        String clientToken = request.getParameter(TOKEN_KEY);
         if (clientToken == null) {
             return true;
         }

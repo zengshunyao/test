@@ -9,7 +9,6 @@ import java.util.Map;
  */
 public class ArrUtils {
 
-
     /**
      * An empty immutable <code>Object</code> array.
      */
@@ -18,7 +17,7 @@ public class ArrUtils {
      * An empty immutable <code>Class</code> array.
      */
     @SuppressWarnings("rawtypes")
-	public static final Class[] EMPTY_CLASS_ARRAY = new Class[0];
+    public static final Class[] EMPTY_CLASS_ARRAY = new Class[0];
     /**
      * An empty immutable <code>String</code> array.
      */
@@ -134,8 +133,8 @@ public class ArrUtils {
      * @throws IllegalArgumentException if the array contains elements other
      *                                  than {@link java.util.Map.Entry} and an Array
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	public static Map<Object,Object> toMap(Object[] array) {
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static Map<Object, Object> toMap(Object[] array) {
         if (array == null) {
             return null;
         }
@@ -143,7 +142,7 @@ public class ArrUtils {
         for (int i = 0; i < array.length; i++) {
             Object object = array[i];
             if (object instanceof Map.Entry) {
-                Map.Entry<Object,Object> entry = (Map.Entry) object;
+                Map.Entry<Object, Object> entry = (Map.Entry) object;
                 map.put(entry.getKey(), entry.getValue());
             } else if (object instanceof Object[]) {
                 Object[] entry = (Object[]) object;
