@@ -59,7 +59,7 @@ public class LRUCache<K, V> extends AbstractCacheMap<K, V> {
         Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
         int count = 0;
         while (iterator.hasNext()) {
-            CacheObject<K, V> cacheObject = iterator.next();
+            final CacheObject<K, V> cacheObject = iterator.next();
 
             if (cacheObject.isExpired()) {
                 iterator.remove();

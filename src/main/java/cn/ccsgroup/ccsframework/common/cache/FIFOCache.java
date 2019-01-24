@@ -23,13 +23,12 @@ public class FIFOCache<K, V> extends AbstractCacheMap<K, V> {
 
     @Override
     protected int eliminateCache() {
-
         int count = 0;
         K firstKey = null;
 
-        Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
+        final Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
         while (iterator.hasNext()) {
-            CacheObject<K, V> cacheObject = iterator.next();
+            final CacheObject<K, V> cacheObject = iterator.next();
 
             if (cacheObject.isExpired()) {
                 iterator.remove();

@@ -80,7 +80,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
     private final Lock writeLock = cacheLock.writeLock();
 
     /**
-     * 最大缓存大小 , 0表示无限制
+     * 最大缓存大小 , 小于等于0表示无限制
      */
     protected int cacheSize;
 
@@ -101,7 +101,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      */
     @Override
     public int getCacheSize() {
-        return cacheSize;
+        return cacheSize <= 0 ? 0 : cacheSize;
     }
 
     /**
@@ -111,7 +111,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
      * @param defaultExpire
      */
     public AbstractCacheMap(int cacheSize, long defaultExpire) {
-        this.cacheSize = cacheSize;
+        this.cacheSize = cacheSize > 0 ? cacheSize : 0;
         this.defaultExpire = defaultExpire;
     }
 
@@ -179,12 +179,14 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
     public V get(K key) {
         readLock.lock();
         try {
-            CacheObject<K, V> co = cacheMap.get(key);
+            final CacheObject<K, V> co = cacheMap.get(key);
             if (co == null) {
                 return null;
             }
-            if (co.isExpired() == true) {
-                cacheMap.remove(key);
+            if (co.isExpired()) {
+                //此处不能用
+                // cacheMap.remove(key);
+                this.remove(key);
                 return null;
             }
 
@@ -224,7 +226,7 @@ public abstract class AbstractCacheMap<K, V> implements CacheMap<K, V> {
     @Override
     public boolean isFull() {
         //无限制
-        if (cacheSize == 0) {
+        if (cacheSize <= 0) {
             return false;
         }
         return cacheMap.size() >= cacheSize;

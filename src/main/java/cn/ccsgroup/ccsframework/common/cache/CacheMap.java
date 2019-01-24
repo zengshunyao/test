@@ -3,7 +3,9 @@ package cn.ccsgroup.ccsframework.common.cache;
 /**
  * 缓存MAP接口
  * <p>
- * Created by shunyao.zeng on 7/24/14.
+ *
+ * @author shunyao.zeng
+ * @date 7/24/14
  */
 public interface CacheMap<K, V> {
 
@@ -81,6 +83,8 @@ public interface CacheMap<K, V> {
 
     /**
      * 缓存中是否为空
+     *
+     * @return
      */
     public boolean isEmpty();
 }
