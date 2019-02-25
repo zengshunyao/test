@@ -75,26 +75,40 @@ import java.util.List;
  */
 public class Pager implements Serializable {
 
-    /** serialVersionUID */
-    private static final long serialVersionUID       = 8852394572921412518L;
+    /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 8852394572921412518L;
 
-    /** 每页默认的项数 */
-    public static final int   DEFAULT_ITEMS_PER_PAGE = 50;
+    /**
+     * 每页默认的项数
+     */
+    public static final int DEFAULT_ITEMS_PER_PAGE = 50;
 
-    /** 滑动窗口默认的大小 */
-    public static final int   DEFAULT_SLIDER_SIZE    = 7;
+    /**
+     * 滑动窗口默认的大小
+     */
+    public static final int DEFAULT_SLIDER_SIZE = 7;
 
-    /** 当前页码 */
-    private int               curPage;
+    /**
+     * 当前页码
+     */
+    private int curPage;
 
-    /** 总记录数 */
-    private int               itemsTotal;
+    /**
+     * 总记录数
+     */
+    private int itemsTotal;
 
-    /** 每页记录数 */
-    private int               itemsPerPage;
+    /**
+     * 每页记录数
+     */
+    private int itemsPerPage;
 
-    /** 分页的列表数据 */
-    private List<?>           list;
+    /**
+     * 分页的列表数据
+     */
+    private List<?> list;
 
     /**
      * 创建一个分页器，默认每页显示<code>50</code>项。
@@ -127,7 +141,6 @@ public class Pager implements Serializable {
      * 设置并取得当前页。实际的当前页值被确保在正确的范围内。
      *
      * @param page 当前页
-     *
      * @return 设置后的当前页
      */
     public int setCurPage(int page) {
@@ -174,7 +187,6 @@ public class Pager implements Serializable {
      * 设置并取得总项数。如果指定的总项数小于0，则被看作0。自动调整当前页，确保当前页值在正确的范围内。
      *
      * @param items 总项数
-     *
      * @return 设置以后的总项数
      */
     public int setItemsTotal(int items) {
@@ -196,7 +208,6 @@ public class Pager implements Serializable {
      * 设置并取得每页项数。如果指定的每页项数小于等于0，则使用默认值<code>DEFAULT_ITEMS_PER_PAGE</code>。 并调整当前页使之在改变每页项数前后显示相同的项。
      *
      * @param itemsPerPage 每页项数
-     *
      * @return 设置后的每页项数
      */
     public int setItemsPerPage(int itemsPerPage) {
@@ -264,7 +275,6 @@ public class Pager implements Serializable {
      * 如每页显示10条，设置25，将返回第25条记录所在页的数据项(21-30)
      *
      * @param offset 要显示的项位置
-     *
      * @return 指定项所在的页
      */
     public int setOffset(int offset) {
@@ -302,7 +312,6 @@ public class Pager implements Serializable {
      * 取得前n页页码
      *
      * @param n 前n页
-     *
      * @return 前n页页码
      */
     public int getPreviousPage(int n) {
@@ -322,7 +331,6 @@ public class Pager implements Serializable {
      * 取得后n页页码。
      *
      * @param n 后n面
-     *
      * @return 后n页页码
      */
     public int getNextPage(int n) {
@@ -333,7 +341,6 @@ public class Pager implements Serializable {
      * 判断指定页码是否被禁止，也就是说指定页码超出了范围或等于当前页码。
      *
      * @param page 页码
-     *
      * @return boolean  是否为禁止的页码
      */
     public boolean isDisabledPage(int page) {
@@ -355,7 +362,6 @@ public class Pager implements Serializable {
      * 7这几个页码，第5页被放在中间。如果当前页是12，则返回页码为 9，10，11，12，13。
      *
      * @param pWidth 滑动窗口大小
-     *
      * @return 包含页码的数组，如果指定滑动窗口大小小于1或总页数为0，则返回空数组。
      */
     public int[] getSlider(int pWidth) {
@@ -392,7 +398,6 @@ public class Pager implements Serializable {
      * 计算页数，但不改变当前页。
      *
      * @param page 页码
-     *
      * @return 返回正确的页码(保证不会出边界)
      */
     protected int calcPage(int page) {
@@ -432,7 +437,7 @@ public class Pager implements Serializable {
 
         sb.append(" of ").append(getPages()).append(",\n");
         sb.append("    Showing items ").append(getBeginIndex()).append(" to ").append(getEndIndex()).append(" (total ")
-            .append(getItemsTotal()).append(" items), ");
+                .append(getItemsTotal()).append(" items), ");
         sb.append("offset=").append(getOffset()).append(", length=").append(getActualLength());
 
         return sb.toString();

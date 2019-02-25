@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * LFU缓存实现
- *
+ * <p>
  * Created by shunyao.zeng on 9/25/14.
  */
 public class LFUCache<K, V> extends AbstractCacheMap<K, V> {
@@ -22,20 +22,20 @@ public class LFUCache<K, V> extends AbstractCacheMap<K, V> {
     }
 
     /**
-     * 实现删除过期对象 和 删除访问次数最少的对象 
-     *
+     * 实现删除过期对象 和 删除访问次数最少的对象
      */
     @Override
     protected int eliminateCache() {
-        Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
-        int count = 0;
+        final Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
+        //删除多少对象
+        int removedCount = 0;
         long minAccessCount = Long.MAX_VALUE;
         while (iterator.hasNext()) {
-            CacheObject<K, V> cacheObject = iterator.next();
+            final CacheObject<K, V> cacheObject = iterator.next();
 
             if (cacheObject.isExpired()) {
                 iterator.remove();
-                count++;
+                removedCount++;
                 continue;
             } else {
                 //记录下最少的访问次数
@@ -43,28 +43,22 @@ public class LFUCache<K, V> extends AbstractCacheMap<K, V> {
             }
         }
 
-        if (count > 0) {
-            return count;
+        if (removedCount > 0) {
+            return removedCount;
         }
 
         if (minAccessCount != Long.MAX_VALUE) {
+            final Iterator<CacheObject<K, V>> iterator1 = cacheMap.values().iterator();
 
-            iterator = cacheMap.values().iterator();
-
-            while (iterator.hasNext()) {
-                CacheObject<K, V> cacheObject = iterator.next();
-
+            while (iterator1.hasNext()) {
+                final CacheObject<K, V> cacheObject = iterator1.next();
                 cacheObject.accessCount -= minAccessCount;
-
                 if (cacheObject.accessCount <= 0) {
-                    iterator.remove();
-                    count++;
+                    iterator1.remove();
+                    removedCount++;
                 }
-
             }
-
         }
-
-        return count;
+        return removedCount;
     }
 }

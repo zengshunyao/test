@@ -6,12 +6,14 @@ import java.util.List;
 
 /**
  * sheet中的一行数据
- *
+ * <p>
  * Created by shunyao.zeng on 7/28/14.
  */
 public class ExcelRow {
 
-    /** 行中的列 */
+    /**
+     * 行中的列
+     */
     private List<ExcelCell> cells;
 
     public List<ExcelCell> getCells() {

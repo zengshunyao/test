@@ -13,18 +13,22 @@ import java.util.Map;
  */
 public class BeanConverterConfig {
 
-    /** 包含 BeanConverter 的 ContextClassLoader 实例索引 */
-    private static final ContextClassLoaderLocal      BEANS_BY_CLASSLOADER = new ContextClassLoaderLocal() {
+    /**
+     * 包含 BeanConverter 的 ContextClassLoader 实例索引
+     */
+    private static final ContextClassLoaderLocal BEANS_BY_CLASSLOADER = new ContextClassLoaderLocal() {
+        // 创建默认的实例
+        @Override
+        protected Object initialValue() {
+            return new BeanConverterConfig();
+        }
+    };
 
-                                                                               // 创建默认的实例
-                                                                               protected Object initialValue() {
-                                                                                   return new BeanConverterConfig();
-                                                                               }
-                                                                           };
-
-    /** 对象的转换器 */
-    private SoftReference<Map<String, TypeConverter>> converters           = new SoftReference<Map<String, TypeConverter>>(
-                                                                               new HashMap<String, TypeConverter>());
+    /**
+     * 对象的转换器
+     */
+    private SoftReference<Map<String, TypeConverter>> converters = new SoftReference<Map<String, TypeConverter>>(
+            new HashMap<String, TypeConverter>());
 
     /**
      * 获取实例，提供的功能应用于 {@link BeanConverter}.
@@ -51,7 +55,7 @@ public class BeanConverterConfig {
 
     /**
      * 获取转换器key
-     * 
+     *
      * @param sourceClass
      * @param targetClass
      * @return
@@ -71,7 +75,7 @@ public class BeanConverterConfig {
             converters = new SoftReference<Map<String, TypeConverter>>(map = new HashMap<String, TypeConverter>());
         }
         map.put(BeanConverterConfig.getCovertKey(converter.getSourceTypeClass(), converter.getTargetTypeClass()),
-            converter);
+                converter);
     }
 
     /**
@@ -90,7 +94,7 @@ public class BeanConverterConfig {
 
     /**
      * 获取所有转换器
-     * 
+     *
      * @return
      */
     public Map<String, TypeConverter> getConverters() {

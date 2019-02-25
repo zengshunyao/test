@@ -5,14 +5,14 @@ import java.util.LinkedHashMap;
 
 /**
  * FIFO缓存实现
- *
+ * <p>
  * Created by shunyao.zeng on 9/25/14.
  */
 public class FIFOCache<K, V> extends AbstractCacheMap<K, V> {
 
     /**
      * 构造访求
-     * 
+     *
      * @param cacheSize
      * @param defaultExpire
      */
@@ -23,13 +23,12 @@ public class FIFOCache<K, V> extends AbstractCacheMap<K, V> {
 
     @Override
     protected int eliminateCache() {
-
         int count = 0;
         K firstKey = null;
 
-        Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
+        final Iterator<CacheObject<K, V>> iterator = cacheMap.values().iterator();
         while (iterator.hasNext()) {
-            CacheObject<K, V> cacheObject = iterator.next();
+            final CacheObject<K, V> cacheObject = iterator.next();
 
             if (cacheObject.isExpired()) {
                 iterator.remove();

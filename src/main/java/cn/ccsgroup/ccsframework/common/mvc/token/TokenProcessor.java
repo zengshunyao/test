@@ -15,7 +15,8 @@ import java.util.UUID;
  * All Rights Reserved.
  */
 public class TokenProcessor {
-    private static TokenProcessor instance;
+
+    private static volatile TokenProcessor instance;
 
     private TokenProcessor() {
         super();

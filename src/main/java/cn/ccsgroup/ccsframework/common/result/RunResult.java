@@ -5,23 +5,31 @@ import java.util.List;
 
 /**
  * 执行消息返回结果
- * 
+ * <p>
  * User: shunyao.zeng
  * Date: 2/13/14
  * Time: 4:34 PM
  */
 public class RunResult {
 
-    /** is success */
-    protected boolean      success = true;
+    /**
+     * is success
+     */
+    protected boolean success = true;
 
-    /** result code */
-    protected String       code;
+    /**
+     * result code
+     */
+    protected String code;
 
-    /** error message */
+    /**
+     * error message
+     */
     protected List<String> errors;
 
-    /** result message */
+    /**
+     * result message
+     */
     protected List<String> messages;
 
     /**
@@ -42,7 +50,7 @@ public class RunResult {
     /**
      * Constructor
      *
-     * @param isSuccess the is success
+     * @param isSuccess  the is success
      * @param resultCode the result code
      */
     public RunResult(boolean isSuccess, String resultCode) {
@@ -52,7 +60,7 @@ public class RunResult {
 
     /**
      * 添加运行信息
-     * 
+     *
      * @param message
      */
     public void addMessage(String message) {
@@ -64,7 +72,7 @@ public class RunResult {
 
     /**
      * 添加错误信息
-     * 
+     *
      * @param error
      */
     public void addError(String error) {
@@ -76,7 +84,7 @@ public class RunResult {
 
     /**
      * 获取错误信息字符串，以;号分隔
-     * 
+     *
      * @return
      */
     public String getStrErrors() {
@@ -94,7 +102,7 @@ public class RunResult {
 
     /**
      * 获取结果信息字符串，以;号分隔
-     * 
+     *
      * @return
      */
     public String getStrMessages() {

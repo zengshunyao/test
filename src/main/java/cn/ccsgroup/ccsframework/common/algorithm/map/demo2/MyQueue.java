@@ -23,6 +23,6 @@ public class MyQueue<E> extends LinkedBlockingQueue<E> {
     }
 
     public E DeQueue() {
-       return this.poll();
+        return this.poll();
     }
 }

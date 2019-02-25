@@ -14,9 +14,9 @@ import java.util.WeakHashMap;
  * 通过“共享”的classloader加载的类的静态成员变量，在容器内运行的所有组件都是可见的。
  * 这个类提供了一个ClassLoader实例数据关联机制，确保代码在这样的容器运行时每个组件都有自己的副本在“全局”的变量而不是意外的提供一个副本，
  * 当变量和其它组件碰巧同一时间运行在同一容器（比如：servlets 或 EJBs）。
- *
+ * <p>
  * 这个类是java.lang.ThreadLocal 的加强模式，允许与特定线程相关联的数据执行类型的任务。
- *
+ * <p>
  * 当使用这个类的代码作为“一般”应用程序运行，即不在容器内，与只使用一个静态成员变量来存储数据的效果是相同的
  * 因为Thread.getContextClassLoader总是返回相同的classloader（系统的classloader）。
  *
@@ -41,20 +41,20 @@ import java.util.WeakHashMap;
  * <strong>注意:</strong>
  * 这个类需要小心一些，确保使用这个类的组件由容器来“取消部署”，
  * 特定的组件classloader和所有相关联的类（和他们的表态变量）进行垃圾回收。
- *
+ * <p>
  * 不幸的是有一个场景这个类不会正常工作，更不幸的是没有已知的解决方法：
  * 当组件被取消部署，组件（或容器）调用该类实例的“unset”方法
- *
+ * <p>
  * 该问题发生于：
  * <ul>
- *  <li>通过一个共享的classloader加载的这个类包含静态的实例</li>
- *  <li>实例中存储的值是一个通过特定组件的classloader加载的对象(或任何对象，它指的是通过那个classloader加载)。</li>
+ * <li>通过一个共享的classloader加载的这个类包含静态的实例</li>
+ * <li>实例中存储的值是一个通过特定组件的classloader加载的对象(或任何对象，它指的是通过那个classloader加载)。</li>
  * </ul>
  * 其结果是，该map管理的这个对象，仍包含所存储对象的强引用，它是由包含一个强引用的classloader加载的，
  * 这意味着容器“取消部署”，组件、特定组件的classloader和所有相关的类和静态变量不能被垃圾回收。
- *
+ * <p>
  * 如果容器需要每个组件加载所有的设置和类，需要避免通过“共享的”classloader来提供类加载。
- *
+ * <p>
  * <p/>
  * User: shunyao.zeng
  * Date: 13-5-9 下午4:10
@@ -62,14 +62,20 @@ import java.util.WeakHashMap;
  */
 public class ContextClassLoaderLocal {
 
-    /** 保存实际实例的数据信息 */
-    private Map<ClassLoader, Object> valueByClassLoader     = new WeakHashMap<ClassLoader, Object>();
+    /**
+     * 保存实际实例的数据信息
+     */
+    private Map<ClassLoader, Object> valueByClassLoader = new WeakHashMap<ClassLoader, Object>();
 
-    /** 全局初始值初始化标记 */
-    private boolean                  globalValueInitialized = false;
+    /**
+     * 全局初始值初始化标记
+     */
+    private volatile boolean globalValueInitialized = false;
 
-    /** 全局初始值 */
-    private Object                   globalValue;
+    /**
+     * 全局初始值
+     */
+    private volatile Object globalValue;
 
     /**
      * 构造方法
@@ -102,26 +108,20 @@ public class ContextClassLoaderLocal {
      * @return 当前线程ContextClassLoader的关联对象
      */
     public synchronized Object get() {
-
         // 同步整个方法会有点慢，
         // 但是保证不会有微秒的线程问题,并且不需要同步 valueByClassLoader
-
         // make sure that the map is given a change to purge itself
         //        valueByClassLoader.isEmpty();
         try {
-
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
             if (contextClassLoader != null) {
-
                 Object value = valueByClassLoader.get(contextClassLoader);
                 if ((value == null) && !valueByClassLoader.containsKey(contextClassLoader)) {
                     value = initialValue();
                     valueByClassLoader.put(contextClassLoader, value);
                 }
                 return value;
-
             }
-
         } catch (SecurityException e) {
         }
 
@@ -143,16 +143,14 @@ public class ContextClassLoaderLocal {
         // 同步整个方法会有点慢，
         // 但是保证不会有微秒的线程问题,并且不需要同步 valueByClassLoader
 
-        //        // make sure that the map is given a change to purge itself
+        // make sure that the map is given a change to purge itself
         //        valueByClassLoader.isEmpty();
         try {
-
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
             if (contextClassLoader != null) {
                 valueByClassLoader.put(contextClassLoader, value);
                 return;
             }
-
         } catch (SecurityException e) {
         }
 
@@ -166,17 +164,16 @@ public class ContextClassLoaderLocal {
      */
     public synchronized void unset() {
         try {
-
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
             unset(contextClassLoader);
-
-        } catch (SecurityException e) { /* SWALLOW - should we log this? */
+        } catch (SecurityException e) {
+            /* SWALLOW - should we log this? */
         }
     }
 
     /**
      * 卸载当前线程ContextClassLoader关联的对象
-     * 
+     *
      * @param classLoader 需要卸载的ClassLoader
      */
     public synchronized void unset(ClassLoader classLoader) {

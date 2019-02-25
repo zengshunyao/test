@@ -20,12 +20,12 @@ public final class PropertyUtils {
     /**
      * 属性文件后缀
      */
-    private static final String        PRO_SUFFIX = ".properties";
+    private static final String PRO_SUFFIX = ".properties";
 
     /**
      * 配置文件保存map
      */
-    private static Map<String, String> propMap    = new HashMap<String, String>();
+    private static Map<String, String> propMap = new HashMap<String, String>();
 
     /**
      * 加载资源文件

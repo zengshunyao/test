@@ -1,26 +1,29 @@
 package cn.ccsgroup.ccsframework.common.interceptor;
 
 import cn.ccsgroup.ccsframework.common.exceptions.DexcoderException;
+import cn.ccsgroup.ccsframework.common.result.RunBinder;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
-import cn.ccsgroup.ccsframework.common.result.RunBinder;
-
 /**
  * 业务拦截器，主要拦截异常及错误信息，最好配合RunBinderOnMvcDestroyInterceptor使用防止内存溢出
- *
+ * <p>
  * Created by shunyao.zeng on 4/9/14.
  */
 public class RunBinderInterceptor implements MethodInterceptor {
 
-    /** 日志对象 */
-    private static final Logger LOG         = LoggerFactory.getLogger(RunBinderInterceptor.class);
+    /**
+     * 日志对象
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(RunBinderInterceptor.class);
 
-    /** 执行时间超过打印warn日志毫秒数 */
-    private static final long   LOG_TIMEOUT = 1000;
+    /**
+     * 执行时间超过打印warn日志毫秒数
+     */
+    private static final long LOG_TIMEOUT = 1000;
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -33,7 +36,7 @@ public class RunBinderInterceptor implements MethodInterceptor {
         //当前时间毫秒数
         long startTime = System.currentTimeMillis();
 
-        LOG.debug("start:[class={},method={},startTime={}]", new Object[] { targetClass, targetMethod, startTime });
+        LOG.debug("start:[class={},method={},startTime={}]", new Object[]{targetClass, targetMethod, startTime});
 
         //返回结果
         Object result = null;
@@ -42,11 +45,10 @@ public class RunBinderInterceptor implements MethodInterceptor {
             result = invocation.proceed();
 
         } catch (DexcoderException dexcoderException) {
-
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             RunBinder.addError(dexcoderException);
             LOG.info("出现已知异常，异常信息[resultCode={},resultMsg={}]", dexcoderException.getResultCode(),
-                dexcoderException.getResultMsg());
+                    dexcoderException.getResultMsg());
             //ignore
         } catch (Throwable throwable) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -57,14 +59,13 @@ public class RunBinderInterceptor implements MethodInterceptor {
 
         long finishTime = System.currentTimeMillis();
 
-        LOG.debug("finished:[class={},method={},finishTime={}]", new Object[] { targetClass, targetMethod, finishTime });
+        LOG.debug("finished:[class={},method={},finishTime={}]", new Object[]{targetClass, targetMethod, finishTime});
 
         long useTime = finishTime - startTime;
 
         if (useTime > LOG_TIMEOUT) {
-
-            LOG.warn("Long processing time:[class={},method={},used time={}]", new Object[] { targetClass,
-                    targetMethod, useTime });
+            LOG.warn("Long processing time:[class={},method={},used time={}]", new Object[]{targetClass,
+                    targetMethod, useTime});
         }
         return result;
     }

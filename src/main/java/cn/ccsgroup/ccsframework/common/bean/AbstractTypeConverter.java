@@ -5,10 +5,14 @@ package cn.ccsgroup.ccsframework.common.bean;
  */
 public abstract class AbstractTypeConverter implements TypeConverter {
 
-    /** 源类型 */
+    /**
+     * 源类型
+     */
     private Class<?> sourceClass;
 
-    /** 目标类型 */
+    /**
+     * 目标类型
+     */
     private Class<?> targetClass;
 
     public AbstractTypeConverter() {
@@ -19,14 +23,17 @@ public abstract class AbstractTypeConverter implements TypeConverter {
         this.targetClass = targetClass;
     }
 
+    @Override
     public Class<?> getSourceTypeClass() {
         return this.sourceClass;
     }
 
+    @Override
     public Class<?> getTargetTypeClass() {
         return this.targetClass;
     }
 
-    public abstract Object convert(Class<?> actualSourceClass, Class<?> actualTargetClass, Object value);
+//    @Override
+//    public abstract Object convert(Class<?> actualSourceClass, Class<?> actualTargetClass, Object value);
 
 }

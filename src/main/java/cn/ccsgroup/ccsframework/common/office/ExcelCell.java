@@ -2,12 +2,14 @@ package cn.ccsgroup.ccsframework.common.office;
 
 /**
  * row中的一列数据
- *
+ * <p>
  * Created by shunyao.zeng on 7/28/14.
  */
 public class ExcelCell {
 
-    /** 列值 */
+    /**
+     * 列值
+     */
     private Object value;
 
     public ExcelCell() {
@@ -19,7 +21,7 @@ public class ExcelCell {
 
     /**
      * 获取value值的字符串形式
-     * 
+     *
      * @return
      */
     public String getStringValue() {

@@ -5,21 +5,27 @@ import cn.ccsgroup.ccsframework.common.cache.LRUCache;
 
 /**
  * 缓存
- *
+ * <p>
  * Created by shunyao.zeng on 1/5/15.
  */
 @SuppressWarnings("unchecked")
 public class CacheUtils {
 
-    /** 默认缓存大小 */
-    public static final int                 DEFAULT_CACHE_SIZE      = 5000;
+    /**
+     * 默认缓存大小
+     */
+    public static final int DEFAULT_CACHE_SIZE = 5000;
 
-    /** 默认缓存存活时间 毫秒 一个小时 */
-    public static final long                DEFAULT_CACHE_LIVE_TIME = 1000 * 60 * 60;
+    /**
+     * 默认缓存存活时间 毫秒 一个小时
+     */
+    public static final long DEFAULT_CACHE_LIVE_TIME = 1000 * 60 * 60;
 
-    /** 缓存map */
-    private static CacheMap<Object, Object> cacheMap                = new LRUCache<Object, Object>(DEFAULT_CACHE_SIZE,
-                                                                        DEFAULT_CACHE_LIVE_TIME);
+    /**
+     * 缓存map
+     */
+    private static CacheMap<Object, Object> cacheMap = new LRUCache<Object, Object>(DEFAULT_CACHE_SIZE,
+            DEFAULT_CACHE_LIVE_TIME);
 
     /**
      * 获取缓存大小
@@ -76,7 +82,7 @@ public class CacheUtils {
     /**
      * 添加缓存
      *
-     * @param key the key
+     * @param key   the key
      * @param value the value
      */
     public static void put(Object key, Object value) {
@@ -86,8 +92,8 @@ public class CacheUtils {
     /**
      * 添加缓存
      *
-     * @param key the key
-     * @param value the value
+     * @param key      the key
+     * @param value    the value
      * @param liveTime the live time
      */
     public static void put(Object key, Object value, long liveTime) {
@@ -98,8 +104,8 @@ public class CacheUtils {
      * 添加子缓存
      *
      * @param parentKey the parent key
-     * @param key the key
-     * @param value the value
+     * @param key       the key
+     * @param value     the value
      */
     public static void putChild(Object parentKey, Object key, Object value) {
         putChild(parentKey, key, value, DEFAULT_CACHE_LIVE_TIME);
@@ -109,9 +115,9 @@ public class CacheUtils {
      * 添加子缓存
      *
      * @param parentKey the parent key
-     * @param key the key
-     * @param value the value
-     * @param liveTime the live time
+     * @param key       the key
+     * @param value     the value
+     * @param liveTime  the live time
      */
     public static void putChild(Object parentKey, Object key, Object value, long liveTime) {
         CacheMap<Object, Object> map = (CacheMap<Object, Object>) cacheMap.get(parentKey);
@@ -134,7 +140,7 @@ public class CacheUtils {
 
     /**
      * 移除子元素
-     * 
+     *
      * @param parentKey
      * @param key
      */

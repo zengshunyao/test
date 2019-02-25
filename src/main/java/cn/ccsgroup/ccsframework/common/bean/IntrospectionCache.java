@@ -27,8 +27,8 @@ public class IntrospectionCache {
      * Needs to be a WeakHashMap with WeakReferences as values to allow
      * for proper garbage collection in case of multiple class loaders.
      */
-    public static final Map<Class<?>, Object>     classCache = Collections
-                                                                 .synchronizedMap(new WeakHashMap<Class<?>, Object>());
+    public static final Map<Class<?>, Object> classCache = Collections
+            .synchronizedMap(new WeakHashMap<Class<?>, Object>());
 
     /**
      * 类的属性信息，key为属性名
@@ -43,7 +43,6 @@ public class IntrospectionCache {
     private IntrospectionCache(Class<?> beanClass) {
 
         try {
-
             final BeanInfo beanInfo = Introspector.getBeanInfo(beanClass);
 
             // 从Introspector缓存立即移除类，在类加载终止时允许适当的垃圾收集
@@ -56,20 +55,15 @@ public class IntrospectionCache {
             } while (classToFlush != null);
 
             this.propertyDescriptorCache = new LinkedHashMap<String, PropertyDescriptor>();
-
             // 此调用较慢，所以我们只执行一次
             PropertyDescriptor[] pds = beanInfo.getPropertyDescriptors();
-
             for (PropertyDescriptor pd : pds) {
-
                 if (Class.class.equals(beanClass) && "classLoader".equals(pd.getName())) {
                     // 忽略 Class.getClassLoader() 方法 - 没有人会需要绑定到那
                     continue;
                 }
-
                 this.propertyDescriptorCache.put(pd.getName(), pd);
             }
-
         } catch (IntrospectionException ex) {
             throw new CommonsAssistantException("初始化缓存bean信息时出现异常", ex);
         }

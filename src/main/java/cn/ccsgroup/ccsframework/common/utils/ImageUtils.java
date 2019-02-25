@@ -66,7 +66,7 @@ public final class ImageUtils {
 
             // Create the buffered image.
             BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null), temp.getHeight(null),
-                BufferedImage.TYPE_INT_RGB);
+                    BufferedImage.TYPE_INT_RGB);
 
             // Copy image to buffered image.
             Graphics2D g1 = bufferedImage.createGraphics();
@@ -79,8 +79,8 @@ public final class ImageUtils {
 
             // Soften.
             float softenFactor = 0.05f;
-            float[] softenArray = { 0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
-                    softenFactor, 0 };
+            float[] softenArray = {0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
+                    softenFactor, 0};
             Kernel kernel = new Kernel(3, 3, softenArray);
             ConvolveOp cOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
             bufferedImage = cOp.filter(bufferedImage, null);
@@ -95,12 +95,12 @@ public final class ImageUtils {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
             g.drawImage(image.getScaledInstance(image.getWidth(null), image.getHeight(null), Image.SCALE_SMOOTH), 0, 0,
-                null);
+                    null);
             //
             if (null != degree) {
                 // 设置水印旋转
                 g.rotate(Math.toRadians(degree), (double) bufferedImage.getWidth() / 2,
-                    (double) bufferedImage.getHeight() / 2);
+                        (double) bufferedImage.getHeight() / 2);
             }
 
             // 水印图象的路径 水印一般为gif或者png的，这样可设置透明度
@@ -159,12 +159,12 @@ public final class ImageUtils {
             g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
             g.drawImage(bufferedImage.getScaledInstance(bufferedImage.getWidth(null), bufferedImage.getHeight(null),
-                Image.SCALE_SMOOTH), 0, 0, null);
+                    Image.SCALE_SMOOTH), 0, 0, null);
 
             if (null != degree) {
                 // 设置水印旋转
                 g.rotate(Math.toRadians(degree), (double) bufferedImage.getWidth() / 2,
-                    (double) bufferedImage.getHeight() / 2);
+                        (double) bufferedImage.getHeight() / 2);
             }
 
             // 设置颜色
@@ -253,7 +253,7 @@ public final class ImageUtils {
 
             int width = image.getWidth();
             int height = image.getHeight();
-            return new int[] { width, height };
+            return new int[]{width, height};
 
         } catch (Exception e) {
             throw new CommonsAssistantException("读取图片长宽出现异常", e);
@@ -640,7 +640,7 @@ public final class ImageUtils {
 
         // Create the buffered image.
         BufferedImage bufferedImage = new BufferedImage(temp.getWidth(null), temp.getHeight(null),
-            BufferedImage.TYPE_INT_RGB);
+                BufferedImage.TYPE_INT_RGB);
 
         // Copy image to buffered image.
         Graphics g = bufferedImage.createGraphics();
@@ -653,8 +653,8 @@ public final class ImageUtils {
 
         // Soften.
         float softenFactor = 0.05f;
-        float[] softenArray = { 0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
-                softenFactor, 0 };
+        float[] softenArray = {0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
+                softenFactor, 0};
         Kernel kernel = new Kernel(3, 3, softenArray);
         ConvolveOp cOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
         bufferedImage = cOp.filter(bufferedImage, null);
@@ -712,8 +712,8 @@ public final class ImageUtils {
 
         // Soften.
         float softenFactor = 0.05f;
-        float[] softenArray = { 0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
-                softenFactor, 0 };
+        float[] softenArray = {0, softenFactor, 0, softenFactor, 1 - (softenFactor * 4), softenFactor, 0,
+                softenFactor, 0};
         Kernel kernel = new Kernel(3, 3, softenArray);
         ConvolveOp cOp = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
         bufferedImage = cOp.filter(bufferedImage, null);

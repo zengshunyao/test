@@ -5,7 +5,7 @@ import cn.ccsgroup.ccsframework.common.exceptions.CommonsAssistantException;
 
 /**
  * 枚举辅助类
- * 
+ * <p>
  * User: shunyao.zeng
  * Date: 14-1-25
  * Time: 上午10:17
@@ -14,7 +14,7 @@ public final class EnumUtils {
 
     /**
      * 获取枚举的所有属性
-     * 
+     *
      * @param clazz
      * @return
      */
@@ -28,7 +28,7 @@ public final class EnumUtils {
 
     /**
      * 获取枚举的所有属性
-     * 
+     *
      * @param enumClass
      * @return
      */
@@ -45,7 +45,7 @@ public final class EnumUtils {
      * 获取枚举的所有属性
      *
      * @param clazz the clazz
-     * @param code the code
+     * @param code  the code
      * @return enum
      */
     @SuppressWarnings("unchecked")
@@ -66,7 +66,7 @@ public final class EnumUtils {
      * 获取枚举的所有属性
      *
      * @param clazzName the clazzName
-     * @param code the code
+     * @param code      the code
      * @return enum
      */
     @SuppressWarnings("unchecked")

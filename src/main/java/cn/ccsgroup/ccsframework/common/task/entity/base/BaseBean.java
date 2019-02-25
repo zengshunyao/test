@@ -7,17 +7,17 @@ import java.io.Serializable;
 /**
  * Created by ZJD on 2016/4/7.
  */
-public class BaseBean extends Pageable implements Serializable ,Cloneable {
+public class BaseBean extends Pageable implements Serializable, Cloneable {
 
-        //表的id序列管理..
-        protected Integer id;
+    //表的id序列管理..
+    protected Integer id;
 
-        protected String createTime;
-        protected String updateTime;
-        protected String deleteTime;
-        protected String creatorId;
-        protected String updaterId;
-        protected String deleterId;
+    protected String createTime;
+    protected String updateTime;
+    protected String deleteTime;
+    protected String creatorId;
+    protected String updaterId;
+    protected String deleterId;
 
     public BaseBean() {
     }
@@ -35,6 +35,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -42,6 +43,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public String getCreateTime() {
         return createTime;
     }
+
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
@@ -49,6 +51,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public String getUpdateTime() {
         return updateTime;
     }
+
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
@@ -56,6 +59,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public String getDeleteTime() {
         return deleteTime;
     }
+
     public void setDeleteTime(String deleteTime) {
         this.deleteTime = deleteTime;
     }
@@ -63,6 +67,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public String getCreatorId() {
         return creatorId;
     }
+
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
     }
@@ -74,6 +79,7 @@ public class BaseBean extends Pageable implements Serializable ,Cloneable {
     public void setUpdaterId(String updaterId) {
         this.updaterId = updaterId;
     }
+
     public String getDeleterId() {
         return deleterId;
     }
