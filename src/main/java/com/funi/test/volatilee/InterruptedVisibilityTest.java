@@ -1,6 +1,9 @@
 package com.funi.test.volatilee;
 
-/**********************************************************************   
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.RunnableFuture;
+
+/**********************************************************************
  * &lt;p&gt;文件名：InterruptedVisibilityTest.java &lt;/p&gt;
  * &lt;p&gt;文件描述：(描述该文件做什么) 
  * @project_name：test
@@ -42,5 +45,14 @@ public class InterruptedVisibilityTest {
             System.err.println("JMV bug");
             System.err.println("主线程中检测thinkerThread的中断状态:" + thinkerThread.isInterrupted());
         }
+    }
+
+    public RunnableFuture test(){
+       return new FutureTask<Object>(null){
+            public boolean cancel(boolean mayInterruptIfRunning) {
+                InterruptedVisibilityTest.this.equals(null);
+                return super.cancel(mayInterruptIfRunning);
+            }
+        };
     }
 }
