@@ -1,5 +1,6 @@
 package mybatis;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
@@ -33,7 +34,10 @@ public class MyPlugin implements Interceptor {
         Object object = args[1];
         System.out.println("sql语句：" + ms.getSqlSource().getBoundSql(object).getSql());
         System.out.println("参数：" + object.toString());
+
         Object retObject = invocation.proceed();
+
+        System.out.println("结果集:" + JSON.toJSONString(retObject));
         return retObject;
     }
 

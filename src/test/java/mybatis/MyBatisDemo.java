@@ -1,5 +1,7 @@
 package mybatis;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import mybatis.mapper.EmpMapper;
 import mybatis.pojo.Emp;
 import org.apache.ibatis.io.Resources;
@@ -7,7 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;
@@ -22,6 +26,13 @@ import java.io.Reader;
  */
 public class MyBatisDemo {
     public static void main(String[] args) {
+        findAll();
+    }
+
+    /**
+     *
+     */
+    public static void selectOne() {
         try {
             //使用MyBatis提供的Resources类加载mybatis的配置文件
             Reader reader = Resources.getResourceAsReader("mybatis/mybatis-config.xml");
@@ -36,6 +47,37 @@ public class MyBatisDemo {
             session.close();
 //            session.commit();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     */
+    public static void findAll() {
+        //使用MyBatis提供的Resources类加载mybatis的配置文件
+        Reader reader = null;
+        try {
+            reader = Resources.getResourceAsReader("mybatis/mybatis-config.xml");
+
+            //构建sqlSession的工厂
+            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
+            SqlSession session = sessionFactory.openSession();
+            EmpMapper mapper = session.getMapper(EmpMapper.class);
+            PageHelper.startPage(1, 10, false);
+            List<Emp> list = mapper.findAll();
+            System.out.println(list.toString());
+
+
+            Page<Emp> emps = PageHelper
+                    .startPage(1, 10, false)
+                    .doSelectPage(() -> mapper.findAll());
+            System.out.println(emps.toString());
+
+            session.close();
+//            session.commit();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

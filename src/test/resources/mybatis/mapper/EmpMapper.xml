@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="mybatis.mapper.EmpMapper" >
-  <resultMap id="BaseResultMap" type="mybatis.pojo.Emp" >
-    <id column="empno" property="empno" jdbcType="DECIMAL" />
-    <result column="ename" property="ename" jdbcType="VARCHAR" />
-    <result column="job" property="job" jdbcType="VARCHAR" />
-    <result column="mgr" property="mgr" jdbcType="DECIMAL" />
-    <result column="hiredate" property="hiredate" jdbcType="DATE" />
-    <result column="sal" property="sal" jdbcType="DECIMAL" />
-    <result column="comm" property="comm" jdbcType="DECIMAL" />
-    <result column="deptno" property="deptno" jdbcType="DECIMAL" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="mybatis.mapper.EmpMapper">
+    <resultMap id="BaseResultMap" type="mybatis.pojo.Emp">
+        <id column="empno" property="empno" jdbcType="DECIMAL"/>
+        <result column="ename" property="ename" jdbcType="VARCHAR"/>
+        <result column="job" property="job" jdbcType="VARCHAR"/>
+        <result column="mgr" property="mgr" jdbcType="DECIMAL"/>
+        <result column="hiredate" property="hiredate" jdbcType="DATE"/>
+        <result column="sal" property="sal" jdbcType="DECIMAL"/>
+        <result column="comm" property="comm" jdbcType="DECIMAL"/>
+        <result column="deptno" property="deptno" jdbcType="DECIMAL"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     empno, ename, job, mgr, hiredate, sal, comm, deptno
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from emp
-    where empno = #{empno,jdbcType=DECIMAL}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from emp
+        where empno = #{empno,jdbcType=DECIMAL}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from emp
     where empno = #{empno,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="mybatis.pojo.Emp" >
+    <insert id="insert" parameterType="mybatis.pojo.Emp">
     insert into emp (empno, ename, job, 
       mgr, hiredate, sal, comm, 
       deptno)
@@ -32,89 +32,89 @@
       #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL}, 
       #{deptno,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="mybatis.pojo.Emp" >
-    insert into emp
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="empno != null" >
-        empno,
-      </if>
-      <if test="ename != null" >
-        ename,
-      </if>
-      <if test="job != null" >
-        job,
-      </if>
-      <if test="mgr != null" >
-        mgr,
-      </if>
-      <if test="hiredate != null" >
-        hiredate,
-      </if>
-      <if test="sal != null" >
-        sal,
-      </if>
-      <if test="comm != null" >
-        comm,
-      </if>
-      <if test="deptno != null" >
-        deptno,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="empno != null" >
-        #{empno,jdbcType=DECIMAL},
-      </if>
-      <if test="ename != null" >
-        #{ename,jdbcType=VARCHAR},
-      </if>
-      <if test="job != null" >
-        #{job,jdbcType=VARCHAR},
-      </if>
-      <if test="mgr != null" >
-        #{mgr,jdbcType=DECIMAL},
-      </if>
-      <if test="hiredate != null" >
-        #{hiredate,jdbcType=DATE},
-      </if>
-      <if test="sal != null" >
-        #{sal,jdbcType=DECIMAL},
-      </if>
-      <if test="comm != null" >
-        #{comm,jdbcType=DECIMAL},
-      </if>
-      <if test="deptno != null" >
-        #{deptno,jdbcType=DECIMAL},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="mybatis.pojo.Emp" >
-    update emp
-    <set >
-      <if test="ename != null" >
-        ename = #{ename,jdbcType=VARCHAR},
-      </if>
-      <if test="job != null" >
-        job = #{job,jdbcType=VARCHAR},
-      </if>
-      <if test="mgr != null" >
-        mgr = #{mgr,jdbcType=DECIMAL},
-      </if>
-      <if test="hiredate != null" >
-        hiredate = #{hiredate,jdbcType=DATE},
-      </if>
-      <if test="sal != null" >
-        sal = #{sal,jdbcType=DECIMAL},
-      </if>
-      <if test="comm != null" >
-        comm = #{comm,jdbcType=DECIMAL},
-      </if>
-      <if test="deptno != null" >
-        deptno = #{deptno,jdbcType=DECIMAL},
-      </if>
-    </set>
-    where empno = #{empno,jdbcType=DECIMAL}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="mybatis.pojo.Emp" >
+    <insert id="insertSelective" parameterType="mybatis.pojo.Emp">
+        insert into emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="empno != null">
+                empno,
+            </if>
+            <if test="ename != null">
+                ename,
+            </if>
+            <if test="job != null">
+                job,
+            </if>
+            <if test="mgr != null">
+                mgr,
+            </if>
+            <if test="hiredate != null">
+                hiredate,
+            </if>
+            <if test="sal != null">
+                sal,
+            </if>
+            <if test="comm != null">
+                comm,
+            </if>
+            <if test="deptno != null">
+                deptno,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="empno != null">
+                #{empno,jdbcType=DECIMAL},
+            </if>
+            <if test="ename != null">
+                #{ename,jdbcType=VARCHAR},
+            </if>
+            <if test="job != null">
+                #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="mgr != null">
+                #{mgr,jdbcType=DECIMAL},
+            </if>
+            <if test="hiredate != null">
+                #{hiredate,jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                #{sal,jdbcType=DECIMAL},
+            </if>
+            <if test="comm != null">
+                #{comm,jdbcType=DECIMAL},
+            </if>
+            <if test="deptno != null">
+                #{deptno,jdbcType=DECIMAL},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="mybatis.pojo.Emp">
+        update emp
+        <set>
+            <if test="ename != null">
+                ename = #{ename,jdbcType=VARCHAR},
+            </if>
+            <if test="job != null">
+                job = #{job,jdbcType=VARCHAR},
+            </if>
+            <if test="mgr != null">
+                mgr = #{mgr,jdbcType=DECIMAL},
+            </if>
+            <if test="hiredate != null">
+                hiredate = #{hiredate,jdbcType=DATE},
+            </if>
+            <if test="sal != null">
+                sal = #{sal,jdbcType=DECIMAL},
+            </if>
+            <if test="comm != null">
+                comm = #{comm,jdbcType=DECIMAL},
+            </if>
+            <if test="deptno != null">
+                deptno = #{deptno,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where empno = #{empno,jdbcType=DECIMAL}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="mybatis.pojo.Emp">
     update emp
     set ename = #{ename,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
@@ -125,4 +125,9 @@
       deptno = #{deptno,jdbcType=DECIMAL}
     where empno = #{empno,jdbcType=DECIMAL}
   </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from emp
+    </select>
 </mapper>

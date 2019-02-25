@@ -2,6 +2,8 @@ package mybatis.mapper;
 
 import mybatis.pojo.Emp;
 
+import java.util.List;
+
 public interface EmpMapper {
     int deleteByPrimaryKey(Long empno);
 
@@ -14,4 +16,6 @@ public interface EmpMapper {
     int updateByPrimaryKeySelective(Emp record);
 
     int updateByPrimaryKey(Emp record);
+
+    List<Emp> findAll();
 }
