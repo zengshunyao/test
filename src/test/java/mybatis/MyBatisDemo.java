@@ -26,11 +26,12 @@ import java.util.List;
  */
 public class MyBatisDemo {
     public static void main(String[] args) {
-        findAll();
+        selectOne();
+//        findAll();
     }
 
     /**
-     *
+     * 查询一条
      */
     public static void selectOne() {
         try {
@@ -39,12 +40,29 @@ public class MyBatisDemo {
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
-            SqlSession session = sessionFactory.openSession();
-            EmpMapper mapper = session.getMapper(EmpMapper.class);
-            Emp emp = mapper.selectByPrimaryKey(7369l);
-            System.out.println(emp.toString());
+            {
+                SqlSession session = sessionFactory.openSession();
+                EmpMapper mapper = session.getMapper(EmpMapper.class);
+                Emp emp = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp.toString());
 
-            session.close();
+                Emp emp2 = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp2.toString());
+
+                session.close();
+            }
+            {
+                SqlSession session = sessionFactory.openSession();
+                EmpMapper mapper = session.getMapper(EmpMapper.class);
+                Emp emp = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp.toString());
+
+                Emp emp2 = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp2.toString());
+
+                session.close();
+            }
+
 //            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,7 +70,7 @@ public class MyBatisDemo {
     }
 
     /**
-     *
+     * 查询一堆
      */
     public static void findAll() {
         //使用MyBatis提供的Resources类加载mybatis的配置文件
@@ -68,7 +86,6 @@ public class MyBatisDemo {
             PageHelper.startPage(1, 10, false);
             List<Emp> list = mapper.findAll();
             System.out.println(list.toString());
-
 
             Page<Emp> emps = PageHelper
                     .startPage(1, 10, false)

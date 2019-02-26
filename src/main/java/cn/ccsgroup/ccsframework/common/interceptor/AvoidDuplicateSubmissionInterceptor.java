@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 /**
  * *******************************************************************
  * &lt;p&gt;文件名：${file_name} &lt;/p&gt;
- * &lt;p&gt;文件描述：${todo}(描述该文件做什么)
+ * &lt;p&gt;文件描述：${todo}(避免表单重复提交)
  *
  * @author ${user}
  * @project_name：${project_name}
@@ -34,17 +34,17 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
 //        User user = UserUtil.getUser();
         Object user = null;//UserUtil.getUser();
         if (user != null) {
-            HandlerMethod handlerMethod = (HandlerMethod) handler;
-            Method method = handlerMethod.getMethod();
+            final HandlerMethod handlerMethod = (HandlerMethod) handler;
+            final Method method = handlerMethod.getMethod();
 
             AvoidDuplicateSubmission annotation = method.getAnnotation(AvoidDuplicateSubmission.class);
             if (annotation != null) {
-                boolean needSaveSession = annotation.needSaveToken();
+                final boolean needSaveSession = annotation.needSaveToken();
                 if (needSaveSession) {
                     request.getSession(false).setAttribute(TOKEN_KEY, TokenProcessor.getInstance().generateToken());
                 }
 
-                boolean needRemoveSession = annotation.needRemoveToken();
+                final boolean needRemoveSession = annotation.needRemoveToken();
                 if (needRemoveSession) {
                     if (isRepeatSubmit(request)) {
 //                        LOG.warn("please don't repeat submit,[user:" + user.getUsername() + ",url:"
@@ -63,11 +63,11 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
      * @return
      */
     private boolean isRepeatSubmit(HttpServletRequest request) {
-        String serverToken = (String) request.getSession(false).getAttribute(TOKEN_KEY);
+        final String serverToken = (String) request.getSession(false).getAttribute(TOKEN_KEY);
         if (serverToken == null) {
             return true;
         }
-        String clientToken = request.getParameter(TOKEN_KEY);
+        final String clientToken = request.getParameter(TOKEN_KEY);
         if (clientToken == null) {
             return true;
         }
@@ -76,5 +76,4 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
         }
         return false;
     }
-
 }

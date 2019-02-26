@@ -2,7 +2,6 @@ package com.funi.mybatis;
 
 import com.funi.mybatis.mapper.UserInfoMapper;
 import com.funi.mybatis.pojo.UserInfo;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.spring.annotation.MapperScan;
 
 import java.io.InputStream;
+
 @MapperScan()
 public class MybatisDemo {
 

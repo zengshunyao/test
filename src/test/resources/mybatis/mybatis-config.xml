@@ -5,8 +5,11 @@
 <configuration>
     <properties resource="mybatis/mysql.properties"></properties>
     <settings>
-        <setting name="cacheEnabled" value="false"/>
+        <!--未启用缓存 -->
+        <!--<setting name="cacheEnabled" value="false"/>-->
+        <!--自动生成主键-->
         <setting name="useGeneratedKeys" value="true"/>
+        <!--默认执行器类型 org.apache.ibatis.session.ExecutorType-->
         <setting name="defaultExecutorType" value="REUSE"/>
         <!--有效值：SLF4J|LOG4J|LOG4J2|JDK_LOGGING|COMMONS_LOGGING|STDOUT_LOGGING|NO_LOGGING
         默认值：Not set-->

@@ -14,7 +14,7 @@
     <sql id="Base_Column_List">
     empno, ename, job, mgr, hiredate, sal, comm, deptno
   </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" flushCache="true" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from emp
@@ -25,11 +25,11 @@
     where empno = #{empno,jdbcType=DECIMAL}
   </delete>
     <insert id="insert" parameterType="mybatis.pojo.Emp">
-    insert into emp (empno, ename, job, 
-      mgr, hiredate, sal, comm, 
+    insert into emp (empno, ename, job,
+      mgr, hiredate, sal, comm,
       deptno)
-    values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
-      #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL}, 
+    values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR},
+      #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL},
       #{deptno,jdbcType=DECIMAL})
   </insert>
     <insert id="insertSelective" parameterType="mybatis.pojo.Emp">
@@ -125,7 +125,7 @@
       deptno = #{deptno,jdbcType=DECIMAL}
     where empno = #{empno,jdbcType=DECIMAL}
   </update>
-    <select id="findAll" resultMap="BaseResultMap">
+    <select id="findAll" resultMap="BaseResultMap" useCache="false" flushCache="true">
         select
         <include refid="Base_Column_List"/>
         from emp

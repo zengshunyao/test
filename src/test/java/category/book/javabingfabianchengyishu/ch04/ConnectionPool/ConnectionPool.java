@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 /**********************************************************************
  * &lt;p&gt;文件名：${FILE_NAME} &lt;/p&gt;
- * &lt;p&gt;文件描述：${DESCRIPTION}(描述该文件做什么)
+ * &lt;p&gt;文件描述：${DESCRIPTION}(连接池)
  * @project_name：test
  * @author zengshunyao
  * @date 2018/4/3 17:15
@@ -33,11 +33,12 @@ public class ConnectionPool {
                 pool.notifyAll();
             }
         }
-    }// 在mills内无法获取到连接，将会返回null
+    }
 
+    // 在mills内无法获取到连接，将会返回null
     public Connection fetchConnection(long mills) throws InterruptedException {
         synchronized (pool) {
-// 完全超时
+            // 完全超时
             if (mills <= 0) {
                 while (pool.isEmpty()) {
                     pool.wait();
