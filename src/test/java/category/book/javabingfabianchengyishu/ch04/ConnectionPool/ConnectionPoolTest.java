@@ -31,7 +31,7 @@ public class ConnectionPoolTest {
         AtomicInteger notGot = new AtomicInteger();
         for (int i = 0; i < threadCount; i++) {
             Thread thread = new Thread(new ConnetionRunner(count, got, notGot),
-                    "ConnectionRunnerThread"+i);
+                    "ConnectionRunnerThread" + i);
             thread.start();
         }
         start.countDown();

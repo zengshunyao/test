@@ -28,7 +28,7 @@ public class ConnectionPool {
     public void releaseConnection(Connection connection) {
         if (connection != null) {
             synchronized (pool) {
-// 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接
+                // 连接释放后需要进行通知，这样其他消费者能够感知到连接池中已经归还了一个连接
                 pool.addLast(connection);
                 pool.notifyAll();
             }

@@ -22,7 +22,7 @@ public class MapTest {
     public static void main(String[] args) {
         ConcurrentHashMap c = new ConcurrentHashMap();
         c.put("sb", "sb");
-        ConcurrentLinkedQueue<MapTest> concurrentLinkedQueue=new ConcurrentLinkedQueue();
+        ConcurrentLinkedQueue<MapTest> concurrentLinkedQueue = new ConcurrentLinkedQueue();
         concurrentLinkedQueue.add(new MapTest());
         System.out.println(c.size());
     }
