@@ -8,6 +8,7 @@
     <packaging>war</packaging>
 
     <name>test</name>
+    
     <groupId>com.funi</groupId>
     <artifactId>test</artifactId>
     <version>1.0-SNAPSHOT</version>
