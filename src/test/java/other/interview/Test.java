@@ -1,6 +1,6 @@
 package other.interview;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 
 /**
  * *******************************************************************
@@ -17,8 +17,10 @@ import java.util.LinkedHashMap;
 public class Test {
     public static void main(String[] args) {
 //        test4();
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        linkedHashMap.put("sss", null);
+//        LinkedHashMap linkedHashMap = new LinkedHashMap();
+//        linkedHashMap.put("sss", null);
+
+        test5();
     }
 
     public static void test1() {
@@ -59,5 +61,20 @@ public class Test {
             System.out.println("end4");
         }
         return false;
+    }
+
+    public static void test5() {
+        String a = "ab";
+        String b = "a" + "b";
+        System.out.println(a == b);
+        String ab = new String("ab");
+        System.out.println(ab == a);
+        System.out.println(ab == b);
+        System.out.println(ab.equals(a));
+        System.out.println(ab.hashCode() == a.hashCode());
+
+        ArrayList<Integer> list1 = new ArrayList<Integer>();
+        ArrayList<String> list2 = new ArrayList<String>();
+        System.out.println(list1.getClass() == list2.getClass());
     }
 }

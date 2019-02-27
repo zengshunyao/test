@@ -59,8 +59,8 @@ public class FutureTaskTest {
             e.printStackTrace();
         }
 
-        ReentrantLock reentrantLock=new ReentrantLock();
-        ReentrantReadWriteLock reentrantReadWriteLock=new ReentrantReadWriteLock();
+        ReentrantLock reentrantLock = new ReentrantLock();
+        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
         reentrantReadWriteLock.getWriteHoldCount();
     }
 }

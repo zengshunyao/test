@@ -62,7 +62,7 @@ public class BankWaterService implements Runnable {
         }
         // 将结果输出
         sheetBankWaterCount.put("result", result);
-        System.out.println("result"+"="+result);
+        System.out.println("result" + "=" + result);
     }
 
     public static void main(String[] args) {
