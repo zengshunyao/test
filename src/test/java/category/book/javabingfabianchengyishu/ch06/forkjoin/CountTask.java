@@ -18,6 +18,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  *                    All Rights Reserved.
  */
 public class CountTask extends RecursiveTask<Integer> {
+    private static final long serialVersionUID = -4837013216667485962L;
+
     private static final int THRESHOLD = 2; // 阈值
     private static final AtomicInteger count = new AtomicInteger(0);
     private int start;
