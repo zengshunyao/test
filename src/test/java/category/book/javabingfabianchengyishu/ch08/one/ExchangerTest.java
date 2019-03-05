@@ -32,7 +32,7 @@ public class ExchangerTest {
                 try {
                     String A = "银行流水A"; // A录入银行流水数据
                     String bValue = exgr.exchange(A);
-                    System.out.println(bValue);
+                    System.out.println("A获得的" + bValue);
                 } catch (InterruptedException e) {
                 }
             }
@@ -42,7 +42,8 @@ public class ExchangerTest {
             @Override
             public void run() {
                 try {
-                    String b = "银行流水B"; // B录入银行流水数据
+                    String b = "银行流水B";
+                    // B录入银行流水数据
                     String aValue = exgr.exchange(b);
 
                     System.out.println(aValue);
