@@ -1,7 +1,7 @@
 package other.interview;
 
 /**********************************************************************
- * &lt;p&gt;文件名：DemoLock.java &lt;/p&gt;
+ * &lt;p&gt;文件名：DeadLock.java &lt;/p&gt;
  * &lt;p&gt;文件描述：${DESCRIPTION}(描述该文件做什么)
  * @project_name：test
  * @author zengshunyao
@@ -11,7 +11,7 @@ package other.interview;
  * Copyright ChengDu Funi Cloud Code Technology Development CO.,LTD 2014
  *                    All Rights Reserved.
  */
-public class DemoLock {
+public class DeadLock {
     final static Object lock_1 = new Object();
     final static Object lock_2 = new Object();
 
