@@ -1,4 +1,4 @@
-package category.jvm.ch10.$10_2;
+package category.book.shenrujvm.ch10.$10_2;
 
 /**********************************************************************
  * &lt;p&gt;文件名：GenericTypes.java &lt;/p&gt;

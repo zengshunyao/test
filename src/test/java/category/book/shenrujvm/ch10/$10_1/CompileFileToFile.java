@@ -1,4 +1,4 @@
-package category.jvm.ch10.$10_1;
+package category.book.shenrujvm.ch10.$10_1;
 
 import javax.tools.JavaCompiler;
 import javax.tools.JavaFileObject;
@@ -25,7 +25,9 @@ public class CompileFileToFile {
         StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
         //定义要编译的源文件
 //        File file = new File("/path/to/file");
-        File file = new File("E:\\study_Example\\github\\test\\src\\test\\java\\category\\jvm\\ch10\\$10_1\\CompileFileToFile.java");
+        String path = System.getProperty("user.dir") + File.separator + "src\\test\\java" + File.separatorChar + Example.class.getName().replaceAll("\\.", "\\" + File.separatorChar);
+
+        File file = new File(path + ".java");
         //通过源文件获取到要编译的Java类源码迭代器，包括所有内部类，其中每个类都是一个 JavaFileObject，也被称为一个汇编单元
         Iterable<? extends JavaFileObject> compilationUnits = fileManager.getJavaFileObjects(file);
         //生成编译任务

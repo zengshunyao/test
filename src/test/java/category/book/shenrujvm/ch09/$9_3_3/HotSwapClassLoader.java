@@ -1,4 +1,4 @@
-package category.jvm.ch09.$9_3_3;
+package category.book.shenrujvm.ch09.$9_3_3;
 
 /**********************************************************************
  * &lt;p&gt;文件名：HotSwapClassLoader.java &lt;/p&gt;

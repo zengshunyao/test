@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="category.jvm.ch09.$9_3_3.JavaClassExecuter" %>
+<%@ page import="category.book.shenrujvm.ch09.$9_3_3.JavaClassExecuter" %>
 <%@ page import="java.io.FileInputStream" %>
 <%@ page import="java.io.InputStream" %>
 <%

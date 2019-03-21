@@ -1,4 +1,4 @@
-package category.jvm.ch10.$10_1;
+package category.book.shenrujvm.ch10.$10_1;
 
 /**********************************************************************
  * &lt;p&gt;文件名：Example.java &lt;/p&gt;

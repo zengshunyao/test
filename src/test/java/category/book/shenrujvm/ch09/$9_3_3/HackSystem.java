@@ -1,4 +1,4 @@
-package category.jvm.ch09.$9_3_3;
+package category.book.shenrujvm.ch09.$9_3_3;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;

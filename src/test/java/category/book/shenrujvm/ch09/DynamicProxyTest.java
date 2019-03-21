@@ -1,4 +1,4 @@
-package category.jvm.ch09;
+package category.book.shenrujvm.ch09;
 
 import java.io.File;
 import java.lang.reflect.InvocationHandler;
