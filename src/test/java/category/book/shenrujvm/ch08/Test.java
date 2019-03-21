@@ -1,4 +1,4 @@
-package category.book.shenrujvm.ch08.$8_3_3;
+package category.book.shenrujvm.ch08;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -38,7 +38,9 @@ public class Test {
             //实现调用祖父的thinking()方法,打印"i am grandfather"
             try {
                 MethodType mt = MethodType.methodType(void.class);
-                MethodHandle mh = MethodHandles.lookup().findSpecial(GrandFather.class, "thinking", mt, this.getClass());
+                MethodHandle mh = MethodHandles.lookup().findSpecial(GrandFather.class, "thinking", mt,
+                        this.getClass());
+
                 mh.invoke(this);
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();

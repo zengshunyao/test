@@ -15,7 +15,12 @@ import java.lang.invoke.*;
  */
 public class InvokeDynamicTest {
     public static void main(String[] args) throws Throwable {
-        INDY_BootstrapMethod().invoke("icyfenix");
+//        MethodHandle mh = INDY_BootstrapMethod();
+//        mh.invoke("icyfenix");
+
+        MethodHandle mh = INDY_BootstrapMethod();
+        mh.invoke("icyfenix");
+        mh.invokeExact("icyfenix");
     }
 
 
@@ -43,20 +48,23 @@ public class InvokeDynamicTest {
     }
 
     private static MethodHandle INDY_BootstrapMethod() throws Throwable {
-        MethodHandle mh = MH_BootstrapMethod();
 
         MethodType mt = MethodType.fromMethodDescriptorString("(Ljava/lang/String;)V", null);
+
+        MethodHandle mh = MH_BootstrapMethod();
 
         CallSite cs = (CallSite) mh.invokeWithArguments(
                 MethodHandles.lookup(),
                 "testMethod",
                 mt,
                 MethodHandlerTest.ClassA.class);
+
+
         return cs.dynamicInvoker();
     }
 
 
-    public static void testMethod(String s) {
-        System.out.println("hello world:" + s);
-    }
+//    public static void testMethod(String s) {
+//        System.out.println("hello world:" + s);
+//    }
 }
