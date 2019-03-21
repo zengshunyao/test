@@ -1,5 +1,8 @@
 package category.book.shenrujvm.ch10.$10_2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**********************************************************************
  * &lt;p&gt;文件名：GenericTypes.java &lt;/p&gt;
  * &lt;p&gt;文件描述：${DESCRIPTION}(描述该文件做什么)
