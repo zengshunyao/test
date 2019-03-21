@@ -1,6 +1,6 @@
 package category.thread.ch02.deadLockTest;
 
-public class DealThread implements Runnable {
+public class DeadThread implements Runnable {
 
 	public String username;
 	public Object lock1 = new Object();
