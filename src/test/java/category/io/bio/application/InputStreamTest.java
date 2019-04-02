@@ -31,7 +31,7 @@ public class InputStreamTest {
 
     public static void main(String[] args) throws Exception {
 //        System.out.println(read("src/InputStreamTest.java"));
-        String path=new  File("fdsf").getAbsolutePath().toString();
+        String path = new File("fdsf").getAbsolutePath().toString();
         System.out.println(path);
         System.out.println(read("E:\\Test\\IdeaProjects\\test\\src\\test\\java\\category\\io\\" +
                 "InputStreamTest.java"));

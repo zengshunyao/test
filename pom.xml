@@ -14,7 +14,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <!-- 指定Maven仓库 -->
-    <repositories>
+    <!--<repositories>-->
         <!-- 公司的maven仓库 -->
         <!--<repository>-->
         <!--<id>funiRepository</id>-->
@@ -29,9 +29,9 @@
         <!--<enabled>true</enabled>-->
         <!--</snapshots>-->
         <!--</repository>-->
-    </repositories>
+    <!--</repositories>-->
     <!-- 指定maven plugin仓库 -->
-    <pluginRepositories>
+    <!--<pluginRepositories>-->
         <!-- 公司的maven plugin仓库 -->
         <!--<pluginRepository>-->
         <!--<id>funiPluginRepository</id>-->
@@ -45,7 +45,7 @@
         <!--<enabled>false</enabled>-->
         <!--</snapshots>-->
         <!--</pluginRepository>-->
-    </pluginRepositories>
+    <!--</pluginRepositories>-->
     <profiles>
         <!--环境-->
         <profile>
@@ -71,7 +71,11 @@
         </profile>
     </profiles>
     <properties>
+        <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- 编译时的编码 -->
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- mybatis版本号 -->
@@ -898,13 +902,6 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <!-- jsoup HTML parser library @ http://jsoup.org/ -->
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.10.2</version>
-        </dependency>
-
         <!--maven插件-->
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -1139,6 +1136,7 @@
                         <!-- 解决maven命令编译报错，因为rt.jar 和jce.jar在jre的lib下面，不在jdk的lib下面，
                         导致maven找不到（java7以后会出现这个问题），将这2个jar包拷贝到jdk的lib下面估计也好使-->
                         <!--<bootclasspath>${java.home}\lib\rt.jar;${java.home}\lib\jce.jar</bootclasspath>-->
+                        <bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</bootclasspath>
                     </compilerArguments>
                 </configuration>
             </plugin>
