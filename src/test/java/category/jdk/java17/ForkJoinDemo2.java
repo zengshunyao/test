@@ -1,4 +1,4 @@
-package category.jdk.Java17;
+package category.jdk.java17;
 
 import java.time.LocalDate;
 import java.util.Arrays;

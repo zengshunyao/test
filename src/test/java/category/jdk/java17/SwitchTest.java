@@ -1,4 +1,4 @@
-package category.jdk.Java17;
+package category.jdk.java17;
 
 /**********************************************************************
  * &lt;p&gt;文件名：null.java &lt;/p&gt;

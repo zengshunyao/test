@@ -1,4 +1,4 @@
-package category.jdk.Java17;
+package category.jdk.java17;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

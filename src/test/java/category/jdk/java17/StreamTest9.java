@@ -1,4 +1,4 @@
-package category.jdk.Java17;
+package category.jdk.java17;
 
 import org.junit.Test;
 
