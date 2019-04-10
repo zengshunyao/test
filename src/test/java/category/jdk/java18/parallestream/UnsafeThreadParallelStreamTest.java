@@ -1,4 +1,4 @@
-package category.jdk.JDK18.parallestream;
+package category.jdk.java18.parallestream;
 
 import java.util.ArrayList;
 import java.util.List;

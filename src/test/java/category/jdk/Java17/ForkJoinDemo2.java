@@ -1,9 +1,11 @@
 package category.jdk.Java17;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.LongAdder;
 
 /**********************************************************************
@@ -19,6 +21,8 @@ import java.util.concurrent.atomic.LongAdder;
  */
 public class ForkJoinDemo2 {
     final static LongAdder longAdder = new LongAdder();
+    final static AtomicInteger div = new AtomicInteger();
+    final static AtomicInteger cal = new AtomicInteger();
 
     public static void main(String[] args) {
         System.out.println("当前CPU处理器数量：" + ForkJoinPool.commonPool().getParallelism());
@@ -26,7 +30,25 @@ public class ForkJoinDemo2 {
 
         ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-        List nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        final List nums = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+//        ForkJoinTask forkJoinTask= new ForkJoinTask() {
+//            @Override
+//            public Object getRawResult() {
+//                return null;
+//            }
+//
+//            @Override
+//            protected void setRawResult(Object value) {
+//
+//            }
+//
+//            @Override
+//            protected boolean exec() {
+//                return false;
+//            }
+//        };
+
 
         AddTask addTask = new AddTask(nums);
 
@@ -35,6 +57,9 @@ public class ForkJoinDemo2 {
         forkJoinPool.shutdown();
 
         System.out.println("计算结果：" + ForkJoinDemo2.longAdder.intValue());
+
+        System.out.println("div:" + div.get());
+        System.out.println("cal:" + cal.get());
 
     }
 
@@ -50,6 +75,7 @@ public class ForkJoinDemo2 {
         protected void compute() {
             int size = nums.size();
             if (size > 1) {
+                System.out.println(LocalDate.now() + "==div=" + div.incrementAndGet() + "=>" + Thread.currentThread().getName());
                 int middle = size / 2;
 
                 List<Integer> leftLists = nums.subList(0, middle);
@@ -61,9 +87,10 @@ public class ForkJoinDemo2 {
                 AddTask rightAddTask = new AddTask(rightLists);
 
                 this.invokeAll(leftAddTask, rightAddTask);
+
             } else {
                 int cur = nums.get(0);
-//                System.out.println(cur);
+                System.out.println(LocalDate.now() + "==cal=" + cal.incrementAndGet() + "=>" + Thread.currentThread().getName());
                 ForkJoinDemo2.longAdder.add(cur);
             }
         }

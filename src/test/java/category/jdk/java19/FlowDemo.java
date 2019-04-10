@@ -1,4 +1,4 @@
-package category.jdk.jdk19;
+package category.jdk.java19;
 
 
 import org.junit.Test;

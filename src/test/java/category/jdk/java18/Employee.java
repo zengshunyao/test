@@ -1,4 +1,4 @@
-package category.jdk.JDK18;
+package category.jdk.java18;
 
 import java.io.Serializable;
 import java.util.Objects;

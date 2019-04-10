@@ -1,4 +1,4 @@
-package category.jdk.jdk14;
+package category.jdk.java14;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package category.jdk.JDK18.parallestream;
+package category.jdk.java18.parallestream;
 
 import java.util.*;
 import java.util.function.BiConsumer;
