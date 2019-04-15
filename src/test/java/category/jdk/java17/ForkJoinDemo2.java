@@ -86,7 +86,7 @@ public class ForkJoinDemo2 {
 
                 AddTask rightAddTask = new AddTask(rightLists);
 
-                this.invokeAll(leftAddTask, rightAddTask);
+                invokeAll(leftAddTask, rightAddTask);
 
             } else {
                 int cur = nums.get(0);

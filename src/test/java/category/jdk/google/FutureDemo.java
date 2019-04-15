@@ -19,14 +19,14 @@ import java.util.concurrent.TimeUnit;
  *                    All Rights Reserved.
  */
 public class FutureDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
 
 
         ListeningExecutorService executorService = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
         final ListenableFuture<Integer> listenableFuture = executorService.submit(new Callable<Integer>() {
             @Override
             public Integer call() throws Exception {
-                System.out.println("call execute..");
+                System.err.println("call execute..");
                 TimeUnit.SECONDS.sleep(1);
                 return 7;
             }
@@ -38,7 +38,7 @@ public class FutureDemo {
             @Override
             public void run() {
                 try {
-                    System.out.println("get listenable future's result " + listenableFuture.get());
+                    System.err.println("get listenable future's result " + listenableFuture.get());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -47,12 +47,15 @@ public class FutureDemo {
             }
         }, executorService);
 
+        //
+        System.err.println("get -> " + listenableFuture.get());
+
 
 //        方法二：通过Futures的静态方法addCallback给ListenableFuture添加回调函数
         Futures.addCallback(listenableFuture, new FutureCallback<Integer>() {
             @Override
             public void onSuccess(Integer result) {
-                System.out.println("get listenable future's result with callback " + result);
+                System.err.println("get listenable future's result with callback " + result);
             }
 
             @Override
@@ -64,5 +67,8 @@ public class FutureDemo {
 //        另外ListenableFuture还有其他几种内置实现：
 //        SettableFuture：不需要实现一个方法来计算返回值，而只需要返回一个固定值来做为返回值，可以通过程序设置此Future的返回值或者异常信息
 //        CheckedFuture： 这是一个继承自ListenableFuture接口，他提供了checkedGet()方法，此方法在Future执行发生异常时，可以抛出指定类型的异常。
+
+        //关闭
+        executorService.shutdown();
     }
 }

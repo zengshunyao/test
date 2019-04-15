@@ -62,18 +62,17 @@ public class CompletableFutureDemo {
             return value + " from DB";
         }).thenApply(value -> {
             System.out.println(String.format("[Thread:%s]", Thread.currentThread().getName()));
-            return value + " time:" + LocalDate.now();
+            return value + " at " + LocalDate.now();
         }).thenRun(() -> {
-            System.out.println(String.format("[Thread:%s]", Thread.currentThread().getName()));
-            System.out.println("over");
+            System.out.println(String.format("[Thread:%s] 操作结束", Thread.currentThread().getName()));
         })/*.exceptionally((e) -> {
             System.err.println(e);
         })*/;
 
-        while (combineFuture.isDone()) ;
+        while (!combineFuture.isDone()) ;
 
-//        System.out.println(combineFuture.get());
         System.out.println();
+//        System.err.println(combineFuture.get());
 
         System.out.println(String.format("Starting....[Thread:%s]", Thread.currentThread().getName()));
     }
