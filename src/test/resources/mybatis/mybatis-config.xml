@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <properties resource="mybatis/mysql.properties"></properties>
+    <properties resource="mybatis/mysql.properties"/>
     <settings>
         <!--未启用缓存 -->
         <!--<setting name="cacheEnabled" value="false"/>-->
@@ -23,22 +23,56 @@
         <typeAlias alias="User" type="mybatis.pojo.User"/>
     </typeAliases>
 
+    <!--插件-->
+    <plugins>
+        <!---->
+        <plugin interceptor="mybatis.interceptor.ExecutorInterceptor">
+            <property name="name" value="ExecutorInterceptor"/>
+        </plugin>
+        <plugin interceptor="mybatis.interceptor.ParameterHandlerInterceptor">
+            <property name="name" value="ParameterHandlerInterceptor"/>
+        </plugin>
+        <plugin interceptor="mybatis.interceptor.ResultSetHandlerInterceptor">
+            <property name="name" value="ResultSetHandlerInterceptor"/>
+        </plugin>
+        <plugin interceptor="mybatis.interceptor.StatementHandlerInterceptor">
+            <property name="name" value="StatementHandlerInterceptor"/>
+        </plugin>
+    </plugins>
+
     <!-- 配置mybatis运行环境 -->
     <environments default="development">
         <environment id="development">
             <!-- type="JDBC" 代表使用JDBC的提交和回滚来管理事务 -->
             <transactionManager type="JDBC"/>
 
+            <!--1.0 UNPOOLED 表示不支持数据源连接池 -->
+            <!--<dataSource type="POOLED">-->
+            <!--<property name="driver" value="${jdbc.driver}"/>-->
+            <!--<property name="url" value="${jdbc.databaseurl}"/>-->
+            <!--<property name="username" value="${jdbc.username}"/>-->
+            <!--<property name="password" value="${jdbc.password}"/>-->
+            <!--&lt;!&ndash;<property name="driver.encoding" value="UTF8"/>&ndash;&gt;-->
+            <!--</dataSource>-->
+
             <!-- mybatis提供了3种数据源类型，分别是：POOLED,UNPOOLED,JNDI -->
-            <!-- POOLED 表示支持JDBC数据源连接池 -->
-            <!-- UNPOOLED 表示不支持数据源连接池 -->
-            <!-- JNDI 表示支持外部数据源连接池 -->
+            <!--2.0 POOLED 表示支持JDBC数据源连接池 -->
             <dataSource type="POOLED">
                 <property name="driver" value="${jdbc.driver}"/>
                 <property name="url" value="${jdbc.databaseurl}"/>
                 <property name="username" value="${jdbc.username}"/>
                 <property name="password" value="${jdbc.password}"/>
+                <!--<property name="driver.encoding" value="UTF8"/>-->
             </dataSource>
+
+
+            <!--3.0 JNDI 表示支持外部数据源连接池 -->
+            <!--<dataSource type="JNDI ">-->
+            <!--<property name="initial_context " value="${jdbc.databaseurl}"/>-->
+            <!--<property name="data_source " value="${jdbc.username}"/>-->
+            <!--<property name="env.encoding" value="UTF8"/>-->
+            <!--</dataSource>-->
+
         </environment>
     </environments>
 
@@ -46,7 +80,18 @@
     <mappers>
         <!-- 映射文件方式1，一个一个的配置-->
         <!--<mapper resource="mapper/UserMapper.xml"/>-->
-        <!-- 映射文件方式2，自动扫描包内的Mapper接口与配置文件 -->
+
+        <!-- 映射文件方式11，使用相对于类路径的资源引用 -->
+        <!--<mapper resource="org/mybatis/builder/AuthorMapper.xml"/>-->
+
+        <!-- 映射文件方式12，使用完全限定资源定位符（URL） -->
+        <!--<mapper url="file:///var/mappers/AuthorMapper.xml"/>-->
+
+        <!-- 映射文件方式13，使用映射器接口实现类的完全限定类名 -->
+        <!--<mapper class="mybatis.mapper.EmpMapper"/>-->
+
+
+        <!-- 映射文件方式2，自动扫描包内的Mapper接口与配置文件(将包内的映射器接口实现全部注册为映射器) -->
         <package name="mybatis.mapper"/>
     </mappers>
 </configuration>

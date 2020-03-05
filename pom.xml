@@ -15,36 +15,36 @@
 
     <!-- 指定Maven仓库 -->
     <!--<repositories>-->
-        <!-- 公司的maven仓库 -->
-        <!--<repository>-->
-        <!--<id>funiRepository</id>-->
-        <!--<name>local private nexus</name>-->
-        <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
-        <!--&lt;!&ndash;<url>http://172.29.251.100/nexus/content/groups/public/</url>&ndash;&gt;-->
-        <!--<url>http://gitlab.funi.com/nexus/content/groups/public/</url>-->
-        <!--<releases>-->
-        <!--<enabled>true</enabled>-->
-        <!--</releases>-->
-        <!--<snapshots>-->
-        <!--<enabled>true</enabled>-->
-        <!--</snapshots>-->
-        <!--</repository>-->
+    <!-- 公司的maven仓库 -->
+    <!--<repository>-->
+    <!--<id>funiRepository</id>-->
+    <!--<name>local private nexus</name>-->
+    <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
+    <!--&lt;!&ndash;<url>http://172.29.251.100/nexus/content/groups/public/</url>&ndash;&gt;-->
+    <!--<url>http://gitlab.funi.com/nexus/content/groups/public/</url>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--<snapshots>-->
+    <!--<enabled>true</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
     <!--</repositories>-->
     <!-- 指定maven plugin仓库 -->
     <!--<pluginRepositories>-->
-        <!-- 公司的maven plugin仓库 -->
-        <!--<pluginRepository>-->
-        <!--<id>funiPluginRepository</id>-->
-        <!--<name>local private nexus</name>-->
-        <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
-        <!--<url>http://172.29.251.100/nexus/content/groups/public/</url>-->
-        <!--<releases>-->
-        <!--<enabled>true</enabled>-->
-        <!--</releases>-->
-        <!--<snapshots>-->
-        <!--<enabled>false</enabled>-->
-        <!--</snapshots>-->
-        <!--</pluginRepository>-->
+    <!-- 公司的maven plugin仓库 -->
+    <!--<pluginRepository>-->
+    <!--<id>funiPluginRepository</id>-->
+    <!--<name>local private nexus</name>-->
+    <!--&lt;!&ndash;<url>http://172.29.33.201:8081/nexus/content/groups/public/</url>&ndash;&gt;-->
+    <!--<url>http://172.29.251.100/nexus/content/groups/public/</url>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</pluginRepository>-->
     <!--</pluginRepositories>-->
     <profiles>
         <!--环境-->
@@ -79,7 +79,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <!-- mybatis版本号 -->
-        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.version>3.5.4</mybatis.version>
         <!-- spring版本号 -->
         <spring.version>3.2.11.RELEASE</spring.version>
         <!-- 辅助依赖包 -->

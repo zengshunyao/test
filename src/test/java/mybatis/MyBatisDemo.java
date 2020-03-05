@@ -40,6 +40,38 @@ public class MyBatisDemo {
             //构建sqlSession的工厂
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 
+            boolean autoCommit = false;
+            SqlSession session = sessionFactory.openSession(autoCommit);
+
+
+            EmpMapper mapper = session.getMapper(EmpMapper.class);
+
+            Emp emp = mapper.selectByPrimaryKey(7369L);
+            System.out.println(emp.toString());
+
+//            Emp emp2 = mapper.selectByPrimaryKey(7369L);
+//            System.out.println(emp2.toString());
+
+            if (!autoCommit) {
+//                session.commit();
+            }
+
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查询一条 测试session
+     */
+    public static void selectOneTestTwoSession() {
+        try {
+            //使用MyBatis提供的Resources类加载mybatis的配置文件
+            Reader reader = Resources.getResourceAsReader("mybatis/mybatis-config.xml");
+            //构建sqlSession的工厂
+            SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
             {
                 SqlSession session = sessionFactory.openSession();
                 EmpMapper mapper = session.getMapper(EmpMapper.class);
@@ -48,22 +80,23 @@ public class MyBatisDemo {
 
                 Emp emp2 = mapper.selectByPrimaryKey(7369L);
                 System.out.println(emp2.toString());
-
-                session.close();
-            }
-            {
-                SqlSession session = sessionFactory.openSession();
-                EmpMapper mapper = session.getMapper(EmpMapper.class);
-                Emp emp = mapper.selectByPrimaryKey(7369L);
-                System.out.println(emp.toString());
-
-                Emp emp2 = mapper.selectByPrimaryKey(7369L);
-                System.out.println(emp2.toString());
-
-                session.close();
-            }
-
 //            session.commit();
+                session.close();
+            }
+
+            {
+                SqlSession session = sessionFactory.openSession();
+                EmpMapper mapper = session.getMapper(EmpMapper.class);
+                Emp emp = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp.toString());
+
+                Emp emp2 = mapper.selectByPrimaryKey(7369L);
+                System.out.println(emp2.toString());
+//            session.commit();
+                session.close();
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

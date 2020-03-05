@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="mybatis.mapper.EmpMapper">
+
+    <!--二级缓存开启-->
+    <!--创建了一个 FIFO 缓存，每隔 60 秒刷新，最多可以存储结果对象或列表的 512 个引用，
+        而且返回的对象被认为是只读的，因此对它们进行修改可能会在不同线程中的调用者产生冲突。-->
+    <!-- 二级缓存是事务性的。这意味着，当 SqlSession 完成并提交时，或是完成并回滚，
+         但没有执行 flushCache=true 的 insert/delete/update 语句时，缓存会获得更新(与数据库不一致)。-->
+    <cache eviction="FIFO"
+           flushInterval="60000"
+           size="512"
+           readOnly="true"/>
+
     <resultMap id="BaseResultMap" type="mybatis.pojo.Emp">
         <id column="empno" property="empno" jdbcType="DECIMAL"/>
         <result column="ename" property="ename" jdbcType="VARCHAR"/>
@@ -13,25 +24,36 @@
     </resultMap>
     <sql id="Base_Column_List">
     empno, ename, job, mgr, hiredate, sal, comm, deptno
-  </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" flushCache="true" parameterType="java.lang.Long">
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" flushCache="true" useCache="true"
+            parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from emp
         where empno = #{empno,jdbcType=DECIMAL}
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from emp
     where empno = #{empno,jdbcType=DECIMAL}
-  </delete>
+    </delete>
+
     <insert id="insert" parameterType="mybatis.pojo.Emp">
-    insert into emp (empno, ename, job,
-      mgr, hiredate, sal, comm,
-      deptno)
-    values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR},
-      #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL},
-      #{deptno,jdbcType=DECIMAL})
-  </insert>
+        <selectKey>
+            <if test="_databaseId == 'oracle'">
+                select seq_users.nextval from dual
+            </if>
+            <if test="_databaseId == 'db2'">
+                select nextval for seq_users from sysibm.sysdummy1"
+            </if>
+        </selectKey>
+        insert into emp (empno, ename, job,
+        mgr, hiredate, sal, comm,
+        deptno)
+        values (#{empno,jdbcType=DECIMAL}, #{ename,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR},
+        #{mgr,jdbcType=DECIMAL}, #{hiredate,jdbcType=DATE}, #{sal,jdbcType=DECIMAL}, #{comm,jdbcType=DECIMAL},
+        #{deptno,jdbcType=DECIMAL})
+    </insert>
     <insert id="insertSelective" parameterType="mybatis.pojo.Emp">
         insert into emp
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -129,5 +151,13 @@
         select
         <include refid="Base_Column_List"/>
         from emp
+    </select>
+
+    <select id="selectEmpsLike" resultMap="BaseResultMap" parameterType="string">
+        <bind name="pattern" value="'%' + #{value} + '%'"/>
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM emp
+        WHERE ename LIKE #{pattern}
     </select>
 </mapper>
