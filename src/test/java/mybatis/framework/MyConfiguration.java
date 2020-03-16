@@ -504,7 +504,7 @@ public class MyConfiguration extends Configuration {
         return languageRegistry;
     }
 
-    public void setDefaultScriptingLanguage(Class<?> driver) {
+    public void setDefaultScriptingLanguage(Class<? extends LanguageDriver> driver) {
         if (driver == null) {
             driver = XMLLanguageDriver.class;
         }
